@@ -1,0 +1,12 @@
+# General
+.ignore/
+.DS_Store
+
+# IDE
+.idea/
+*.iml
+
+# Terraform
+.terraform/
+tfplan
+terraform.tfstate
