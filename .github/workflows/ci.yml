@@ -1,0 +1,79 @@
+# This workflow validates PRs and pushes with code checks, unit tests and end-to-end tests.
+name: Continuous Integration
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  code-checks:
+    name: Code Checks
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        name:
+          - Go 1.21.5 Lint
+        include:
+          - name: Go 1.21.5 Lint
+            go: 1.21.5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go }}
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        name:
+          - Unit Tests with Go 1.21.5 and Terraform 1.6.6
+          - Unit Tests with Go 1.20.1 and Terraform 1.5.7
+        include:
+          - name: Unit Tests with Go 1.21.5 and Terraform 1.6.6
+            go: 1.21.5
+            terraform: 1.6.6
+          - name: Unit Tests with Go 1.20.1 and Terraform 1.5.7
+            go: 1.20.1
+            terraform: 1.5.7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ matrix.terraform }}
+          terraform_wrapper: false
+  end-to-end-tests:
+    name: End To End Tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        name:
+          - End To End Tests with Go 1.21.5 and Terraform 1.6.6
+          - End To End Tests with Go 1.20.1 and Terraform 1.5.7
+        include:
+          - name: End To End Tests with Go 1.21.5 and Terraform 1.6.6
+            go: 1.21.5
+            terraform: 1.6.6
+          - name: End To End Tests with Go 1.20.1 and Terraform 1.5.7
+            go: 1.20.1
+            terraform: 1.5.7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ matrix.terraform }}
+          terraform_wrapper: false
