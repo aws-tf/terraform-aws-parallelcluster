@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: AWS ParallelCluster Support
+    url: https://github.com/aws/aws-parallelcluster/issues/new/choose
+    about: Issues are collected in the main AWS ParallelCluster repository.
