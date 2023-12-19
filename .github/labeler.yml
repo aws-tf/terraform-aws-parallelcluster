@@ -1,0 +1,17 @@
+Documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+        - docs/**
+        - examples/**
+        - CODE_OF_CONDUCT.md
+        - CONTRIBUTING.md
+        - DEVELOPMENT.md
+        - LICENSE
+        - NOTICE
+        - README.md
+Git:
+  - changed-files:
+      - any-glob-to-any-file:
+        - .github/**
+        - .gitignore
+        - .pre-commit

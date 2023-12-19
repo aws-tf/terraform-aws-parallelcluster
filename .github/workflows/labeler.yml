@@ -1,0 +1,14 @@
+# This workflow assigns labels to PRs according to the rules defined in .github/labeler.yml.
+name: PR Labeler
+
+on:
+  - pull_request
+
+jobs:
+  labeler:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v5
