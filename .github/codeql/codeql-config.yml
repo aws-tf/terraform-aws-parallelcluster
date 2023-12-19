@@ -1,0 +1,8 @@
+name: CodeQL Config
+
+queries:
+  - uses: security-and-quality
+
+paths-ignore:
+  - .github/
+  - docs/
