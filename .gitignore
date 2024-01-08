@@ -10,3 +10,5 @@
 .terraform/
 tfplan
 terraform.tfstate
+terraform.tfstate.*
+terraform.tfvars
