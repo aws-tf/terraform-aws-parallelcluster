@@ -15,5 +15,5 @@
  */
 
 output "parallelcluster" {
-  value = module.api.parallelcluster
+  value = module.pcluster.parallelcluster
 }
