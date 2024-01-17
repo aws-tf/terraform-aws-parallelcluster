@@ -14,26 +14,23 @@
  *
  */
 
-variable "region" {
-  description = "The region the API gateway is deployed in."
-  type        = string
-  default     = "us-east-1"
+variables {}
+
+provider "aws" {
+  region = "us-east-1"
+  profile  = "AWS_868024899531_iesawsna-sandbox"
 }
 
-variable "profile" {
-  type        = string
-  description = "The aws profile used to deploy parallel clusters."
-  default     = null
-}
+run "test_parallelcluster_plan" {
+  
+  variables {
+    name = "Test_Cluster"
+  }  
 
-variable "endpoint" {
-  type        = string
-  description = "The endpoint used to deploy parallel clusters."
-  default     = null
-}
+  command = plan
 
-variable "role_arn" {
-  type        = string
-  description = "The role used to create parallel clusters."
-  default     = null
+  assert {
+    condition = aws_cloudformation_stack.parallelcluster.name == "Test_Cluster" 
+    error_message = "ParallelCluster API name does not equal Test_Cluster."
+  }
 }
