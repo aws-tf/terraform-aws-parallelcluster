@@ -19,7 +19,6 @@ variables {}
 provider "pcluster" {
   endpoint = "null"
   region = "us-east-1"
-  profile  = "AWS_868024899531_iesawsna-sandbox"
 }
 
 run "test_managed_file_configs_plan" {

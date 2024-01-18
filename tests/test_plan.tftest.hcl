@@ -18,13 +18,11 @@ variables {}
 
 provider "aws" {
     region = "us-east-1"
-    profile  = "AWS_868024899531_iesawsna-sandbox"
 }
 
 provider "pcluster" {
   endpoint = "null"
   region = "us-east-1"
-  profile  = "AWS_868024899531_iesawsna-sandbox"
 }
 
 run "test_required_infra_plan" {
@@ -75,6 +73,6 @@ run "test_pcluster_api_plan" {
 
   assert {
     condition = length(module.clusters) == 0
-    error_message = "The clusters module deployed despite the cluster_confgs variable being empty."
+    error_message = "Cluster module should not deploy when the cluster_configs variable is empty."
   }
 }
