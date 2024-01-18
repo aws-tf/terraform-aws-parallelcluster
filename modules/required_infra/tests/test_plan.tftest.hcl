@@ -18,7 +18,6 @@ variables {}
 
 provider "aws" {
   region = "us-east-1"
-  profile  = "AWS_868024899531_iesawsna-sandbox"
 }
 
 run "test_key_plan" {
