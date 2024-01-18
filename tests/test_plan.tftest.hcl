@@ -47,7 +47,7 @@ run "test_required_infra_plan" {
 
   assert {
     condition = length(module.clusters) == 0
-    error_message = "The clusters module deployed despite the cluster_confgs variable being empty."
+    error_message = "Cluster module should not deploy when the cluster_configs variable is empty."
   }
 }
 
