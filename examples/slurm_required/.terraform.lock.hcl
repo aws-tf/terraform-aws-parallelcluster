@@ -85,9 +85,9 @@ provider "registry.terraform.io/hashicorp/tls" {
 }
 
 provider "terraform.local/local/pcluster" {
-  version     = "0.0.1"
-  constraints = "~> 0.0"
+  version     = "3.9.0-1"
+  constraints = "~> 3.9.0-1"
   hashes = [
-    "h1:QiDyo+p/dGYDuZa0DCRU/F8X6Px8hcGTafuq9e9kNIA=",
+    "h1:HKVfqX4ByW95od1ma2b5bZF7bUwCBtlfu/Lv9fD/MBI=",
   ]
 }
