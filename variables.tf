@@ -59,25 +59,25 @@ variable "private_subnet_cidrs" {
 ####################
 variable "deploy_pcluster_api" {
   type        = string
-  description = "If set to true deploys the ParallelCluster API cloudFormation template."
+  description = "If set to true deploys the ParallelCluster API CloudFormation template."
   default     = false
 }
 
 variable "region" {
   type        = string
-  description = "Region to deploy the ParallelCluster API Cloudformation templates."
+  description = "Region to deploy the ParallelCluster API CloudFormation templates."
   default     = "us-east-1"
 }
 
 variable "name" {
   type        = string
-  description = "Name of the CloudFormation stack."
+  description = "Name of the ParallelCluster API CloudFormation stack."
   default     = "ParallelCluster"
 }
 
 variable "api_version" {
   type        = string
-  description = "Version of ParallelCluster to deploy."
+  description = "Version of ParallelCluster API to deploy."
   default     = "3.7.0"
 }
 
@@ -89,7 +89,7 @@ variable "custom_pcluster_template_uri" {
 
 variable "parameters" {
   type        = map(any)
-  description = "Map of parameters to pass to the ParallelCluster CloudFormation template. Refer to the ParallelCluster documentation to see available parameters."
+  description = "Map of parameters to pass to the ParallelCluster API CloudFormation template. Refer to the ParallelCluster documentation to see available parameters."
   default     = {}
 }
 
