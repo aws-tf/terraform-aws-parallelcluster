@@ -14,6 +14,10 @@
  *
  */
 
+resource "random_id" "suffix" {
+  byte_length = 8
+}
+
 module "pcluster" {
   source = "../../."
 
@@ -22,6 +26,7 @@ module "pcluster" {
   }
 
   deploy_pcluster_api = true
+  name                = "PClusterApi${random_id.suffix.hex}"
   api_version         = "3.8.0"
 
   deploy_required_infra = true
