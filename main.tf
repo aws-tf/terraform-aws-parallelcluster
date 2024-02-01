@@ -12,14 +12,14 @@
  *  implied. See the License for the specific language governing permissions and
  *  limitations under the License.
  *
- *  # ParallelCluster Managment Module
+ *  # ParallelCluster Management Module
  *
- *  This ParallelCluster Managment Module can be used to deploy the ParallelCluster API,
+ *  This ParallelCluster Management Module can be used to deploy the ParallelCluster API,
  *  necessary infrastructure for clusters, and manage a list of clusters. Each of of these
  *  is handled by a submodule that can be used individually.
  *
  *  ##### Doc Generation
- *  Documnentation is generated with terraform-docs. The config file is stored at
+ *  Documentation is generated with terraform-docs. The config file is stored at
  *  `.config/.terraform-docs.yml`. See: https://github.com/terraform-docs/terraform-docs.
  *  Run `terraform-docs markdown ./` from the root of the repository to regenerate the README
  *  files.
@@ -35,7 +35,7 @@
  *
  *  #### Clusters Submodule
  *  This module takes in a list of clusters as a terraform object. Cluster lists can be from
- *  json, yaml, or terraform objects. Each cluster containes the name and configuration.
+ *  json, yaml, or terraform objects. Each cluster contains the name and configuration.
  *  Optionally region, rollback, and validation settings may be specified.
  */
 

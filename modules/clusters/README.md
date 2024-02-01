@@ -8,13 +8,13 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_pcluster"></a> [pcluster](#requirement\_pcluster) | ~> 0 |
+| <a name="requirement_pcluster"></a> [pcluster](#requirement\_pcluster) | ~> 3.9.0-1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_pcluster"></a> [pcluster](#provider\_pcluster) | ~> 0 |
+| <a name="provider_pcluster"></a> [pcluster](#provider\_pcluster) | 3.9.0 |
 
 ## Modules
 
@@ -39,5 +39,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_managed"></a> [managed](#output\_managed) | Description of managed clusters. |
 <!-- END_TF_DOCS -->
