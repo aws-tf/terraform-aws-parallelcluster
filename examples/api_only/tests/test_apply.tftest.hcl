@@ -18,10 +18,10 @@ variables {}
 
 run "test_api_only_apply" {
 
-  command = apply 
+  command = apply
 
   assert {
-    condition = var.region == "us-east-1"
+    condition     = var.region == "us-east-1"
     error_message = "Region did not default to us-east-1"
   }
 }

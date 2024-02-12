@@ -21,7 +21,7 @@ run "test_slurm_required_plan" {
   command = plan
 
   assert {
-    condition = var.region == "us-east-1"
+    condition     = var.region == "us-east-1"
     error_message = "Region did not default to us-east-1"
   }
 }

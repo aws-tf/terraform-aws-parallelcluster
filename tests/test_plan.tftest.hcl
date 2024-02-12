@@ -17,62 +17,62 @@
 variables {}
 
 provider "aws" {
-    region = "us-east-1"
+  region = "us-east-1"
 }
 
 provider "pcluster" {
   endpoint = "null"
-  region = "us-east-1"
+  region   = "us-east-1"
 }
 
 run "test_required_infra_plan" {
-  
+
   variables {
-    deploy_required_infra = true 
-    deploy_pcluster_api = false 
-    cluster_configs = {}
-  }  
+    deploy_required_infra = true
+    deploy_pcluster_api   = false
+    cluster_configs       = {}
+  }
 
   command = plan
 
   assert {
-    condition = length(module.required_infra) == 1
+    condition     = length(module.required_infra) == 1
     error_message = "The deploy_required_infra variable did not trigger the required infra module."
   }
 
   assert {
-    condition = length(module.pcluster_api) == 0
+    condition     = length(module.pcluster_api) == 0
     error_message = "The api module should not exist when var.deploy_pcluster_api is set to false."
   }
 
   assert {
-    condition = length(module.clusters) == 0
+    condition     = length(module.clusters) == 0
     error_message = "Cluster module should not deploy when the cluster_configs variable is empty."
   }
 }
 
 run "test_pcluster_api_plan" {
-  
+
   variables {
-    deploy_required_infra = false 
-    deploy_pcluster_api = true 
-    cluster_configs = {}
-  }  
+    deploy_required_infra = false
+    deploy_pcluster_api   = true
+    cluster_configs       = {}
+  }
 
   command = plan
 
   assert {
-    condition = length(module.required_infra) == 0
+    condition     = length(module.required_infra) == 0
     error_message = "The required infra module should not exist when var.deploy_required_infra is set to false."
   }
 
   assert {
-    condition = length(module.pcluster_api) == 1
+    condition     = length(module.pcluster_api) == 1
     error_message = "The pcluster api module should exist when var.depoy_pcluster_api is set to true."
   }
 
   assert {
-    condition = length(module.clusters) == 0
+    condition     = length(module.clusters) == 0
     error_message = "Cluster module should not deploy when the cluster_configs variable is empty."
   }
 }
