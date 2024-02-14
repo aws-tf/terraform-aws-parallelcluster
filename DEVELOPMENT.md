@@ -37,6 +37,14 @@ terraform init
 terraform test
 ```
 
+## Checks
+
+Fix terraform code by using the terraform fmt command.
+
+From the root of the project run: `terraform fmt -recursive ./`
+
+To check without fixing use: `terraform fmt -recursive -check ./`
+
 ## Examples
 Three examples exist inside the `./examples` folder. By default these examples will deploy resources using the default profile in us-east-1. If customization is needed variables can be changed using a tfvars file.
 
