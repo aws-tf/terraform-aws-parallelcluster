@@ -13,38 +13,15 @@ jobs:
       fail-fast: false
       matrix:
         name:
-          - Go 1.21.5 Lint
+          - Unit Tests with Terraform 1.6.6
+          - Unit Tests with Terraform 1.5.7
         include:
-          - name: Go 1.21.5 Lint
-            go: 1.21.5
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: ${{ matrix.go }}
-  unit-tests:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        name:
-          - Unit Tests with Go 1.21.5 and Terraform 1.6.6
-          - Unit Tests with Go 1.20.1 and Terraform 1.5.7
-        include:
-          - name: Unit Tests with Go 1.21.5 and Terraform 1.6.6
-            go: 1.21.5
+          - name: Unit Tests with Terraform 1.6.6
             terraform: 1.6.6
-          - name: Unit Tests with Go 1.20.1 and Terraform 1.5.7
-            go: 1.20.1
+          - name: Unit Tests with Terraform 1.5.7
             terraform: 1.5.7
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: ${{ matrix.go }}
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -56,61 +33,33 @@ jobs:
         run: terraform fmt -recursive -check ./
 
   end-to-end-tests:
-    name: End To End Tests
+    name: End To End Tests 
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         name:
-          - End To End Tests with Go 1.21.5 and Terraform 1.6.6
-          - End To End Tests with Go 1.20.1 and Terraform 1.5.7
+          - Setup with Terraform 1.6.6
+        path: 
+          - ./
+          - ./modules/clusters          
+          - ./modules/required_infra
+          - ./modules/pcluster_api
+          - ./examples/api_only
+          - ./examples/required_infra
+          - ./examples/slurm_required
         include:
-          - name: End To End Tests with Go 1.21.5 and Terraform 1.6.6
-            go: 1.21.5
+          - name: Setup with Terraform 1.6.6
             terraform: 1.6.6
-          - name: End To End Tests with Go 1.20.1 and Terraform 1.5.7
-            go: 1.20.1
-            terraform: 1.5.7
+
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: ${{ matrix.go }}
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ matrix.terraform }}
           terraform_wrapper: false
-
-        # Run terraform init
-      - name: Terraform Init (Main Module) 
-        run: terraform init 
-      - name: Terraform Init (Cluster Module)
-        run: cd modules/clusters && terraform init
-      - name: Terraform Init (Required Infra Module)
-        run: cd modules/required_infra && terraform init
-      - name: Terraform Init (ParallelCluster API Module)
-        run: cd modules/pcluster_api && terraform init
-      - name: Terraform Init (ParallelCluster API Example)
-        run: cd examples/api_only && terraform init
-      - name: Terraform Init (Required Infra Example)
-        run: cd examples/required_infra && terraform init
-      - name: Terraform Init (Slurm Required Example)
-        run: cd examples/slurm_required && terraform init
-
-        # Run terraform tests
-      - name: Terraform Test (Main Module) 
-        run: terraform test 
-      - name: Terraform Test (Cluster Module)
-        run: cd modules/clusters && terraform test
-      - name: Terraform Test (Required Infra Module)
-        run: cd modules/required_infra && terraform test
-      - name: Terraform Test (ParallelCluster API Module)
-        run: cd modules/pcluster_api && terraform test
-      - name: Terraform Test (ParallelCluster API Example)
-        run: cd examples/api_only && terraform test
-      - name: Terraform Test (Required Infra Example)
-        run: cd examples/required_infra && terraform test
-      - name: Terraform Test (Slurm Required Example)
-        run: cd examples/slurm_required && terraform test
+      - name: Terraform Init (${{ matrix.name }})
+        run: cd ${{ matrix.path }} && terraform init
+      - name: Terraform Test (${{ matrix.name }})
+        run: cd ${{ matrix.path }} && terraform test
