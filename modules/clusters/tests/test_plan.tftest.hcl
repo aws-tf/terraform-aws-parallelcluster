@@ -18,29 +18,29 @@ variables {}
 
 provider "pcluster" {
   endpoint = "null"
-  region = "us-east-1"
+  region   = "us-east-1"
 }
 
 run "test_managed_file_configs_plan" {
-  
-  variables {}  
+
+  variables {}
 
   command = plan
 
   assert {
-    condition = length(pcluster_cluster.managed_file_configs) == 0
+    condition     = length(pcluster_cluster.managed_file_configs) == 0
     error_message = "pcluster_cluster.managed_file_configs should not exist with configs are not present."
   }
 }
 
 run "test_managed_configs_plan" {
-  
-  variables {}  
+
+  variables {}
 
   command = plan
 
   assert {
-    condition = length(pcluster_cluster.managed_configs) == 0
+    condition     = length(pcluster_cluster.managed_configs) == 0
     error_message = "pcluster_cluster.managed_file_configs should not exist with configs are not present."
   }
 }

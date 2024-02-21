@@ -17,7 +17,7 @@
 variable "region" {
   description = "The region where the API gateway is deployed."
   type        = string
-  default     = "us-east-1" 
+  default     = "us-east-1"
 }
 
 variable "profile" {
