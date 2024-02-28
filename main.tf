@@ -47,6 +47,8 @@ module "required_infra" {
   vpc_cidr_block       = var.vpc_cidr_block
   public_subnet_cidrs  = var.public_subnet_cidrs
   private_subnet_cidrs = var.private_subnet_cidrs
+  public_subnet_az     = var.public_subnet_az
+  private_subnet_az    = var.private_subnet_az
 }
 
 module "pcluster_api" {
@@ -54,14 +56,14 @@ module "pcluster_api" {
   source = "./modules/pcluster_api"
 
   region                       = var.region
-  name                         = var.name
+  api_stack_name               = var.name
   api_version                  = var.api_version
   custom_pcluster_template_uri = var.custom_pcluster_template_uri
   parameters                   = var.parameters
 }
 
 module "clusters" {
-  count  = length(var.cluster_configs) > 0 ? 1 : 0
+  count  = (length(var.cluster_configs) > 0) || (var.config_path != "") ? 1 : 0
   source = "./modules/clusters"
 
   template_vars   = var.template_vars

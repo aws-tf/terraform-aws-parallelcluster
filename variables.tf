@@ -54,6 +54,18 @@ variable "private_subnet_cidrs" {
   default     = ["10.0.2.0/24"]
 }
 
+variable "public_subnet_az" {
+  type        = string
+  description = "The az to create the public subnets in."
+  default     = "us-east-1a"
+}
+
+variable "private_subnet_az" {
+  type        = string
+  description = "The az to create the private subnets in."
+  default     = "us-east-1a"
+}
+
 ####################
 ## PCLUSTER API ####
 ####################
@@ -69,7 +81,7 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "name" {
+variable "api_stack_name" {
   type        = string
   description = "Name of the ParallelCluster API CloudFormation stack."
   default     = "ParallelCluster"
