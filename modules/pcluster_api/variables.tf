@@ -4,7 +4,7 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "name" {
+variable "api_stack_name" {
   type        = string
   description = "Name of the CloudFormation stack."
   default     = "ParallelCluster"

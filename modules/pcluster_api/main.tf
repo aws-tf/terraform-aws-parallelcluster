@@ -5,8 +5,8 @@
  *  Deployed using a ParallelCluster API Cloudformation Template.
  */
 
-resource "aws_cloudformation_stack" "parallelcluster" {
-  name               = var.name
+resource "aws_cloudformation_stack" "parallelcluster_api" {
+  name               = var.api_stack_name
   template_url       = local.use_custom_pcluster_template_uri ? var.custom_pcluster_template_uri : local.pcluster_template_uri
   timeout_in_minutes = 10
   capabilities       = ["CAPABILITY_NAMED_IAM", "CAPABILITY_AUTO_EXPAND"]
