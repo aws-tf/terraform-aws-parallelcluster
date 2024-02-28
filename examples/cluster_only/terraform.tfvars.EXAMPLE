@@ -1,0 +1,4 @@
+profile    = "some_profile"
+keypair_id = "pcluster00000000000000000000000000"
+subnet_id  = "subnet-00000000000000000"
+api_stack_name = "someName"
