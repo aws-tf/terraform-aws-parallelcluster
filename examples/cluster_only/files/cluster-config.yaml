@@ -1,0 +1,28 @@
+Region: ${region}
+Image:
+ Os: alinux2
+HeadNode:
+ InstanceType: t3.micro
+ Networking:
+   ElasticIp: true
+   SubnetId: ${subnet} 
+ Ssh:
+   KeyName: ${key_pair} 
+Scheduling:
+ Scheduler: slurm
+ SlurmQueues:
+   - Name: queue1
+     CapacityType: ONDEMAND
+     Networking:
+       SubnetIds:
+         - ${subnet} 
+       AssignPublicIp: true
+     ComputeResources:
+       - Name: compute
+         InstanceType: t3.micro
+         MinCount: "1"
+         MaxCount: "5"
+         DisableSimultaneousMultithreading: true
+ SlurmSettings:
+   QueueUpdateStrategy: TERMINATE 
+
