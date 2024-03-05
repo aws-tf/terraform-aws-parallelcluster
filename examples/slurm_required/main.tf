@@ -30,6 +30,8 @@ module "pcluster" {
   api_version         = "3.8.0"
 
   deploy_required_infra = true
+  public_subnet_az      = var.public_subnet_az
+  private_subnet_az     = var.private_subnet_az
 
   region          = "us-east-1"
   template_vars   = local.config_vars
