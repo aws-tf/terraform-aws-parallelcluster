@@ -56,6 +56,8 @@ role = "some_role"
 region = "us-west-2"
 ```
 
+The profile, role, and region correspond to the variables defined in the example. Depending on the example different variables can be set. The variable definitions can be found in the variables.tf file. It is also possible to use standard aws cli environment variables to set these. For example, `AWS_PROFILE`, `AWS_ROLE`, `AWS_REGION` may be set in the environment.
+
 Then run an init, plan, and apply to try out an example:
 
 ```bash

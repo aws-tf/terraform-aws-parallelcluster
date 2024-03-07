@@ -56,7 +56,7 @@ module "pcluster_api" {
   source = "./modules/pcluster_api"
 
   region                       = var.region
-  api_stack_name               = var.name
+  api_stack_name               = var.api_stack_name
   api_version                  = var.api_version
   custom_pcluster_template_uri = var.custom_pcluster_template_uri
   parameters                   = var.parameters
