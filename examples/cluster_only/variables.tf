@@ -17,24 +17,16 @@
 variable "region" {
   description = "The region the API gateway is deployed in."
   type        = string
-  default     = "us-east-1"
+}
+
+variable "cluster_region" {
+  description = "The region the clusters will be deployed in."
+  type        = string
 }
 
 variable "profile" {
   type        = string
   description = "The aws profile used to deploy parallel clusters."
-  default     = null
-}
-
-variable "endpoint" {
-  type        = string
-  description = "The endpoint used to deploy parallel clusters."
-  default     = null
-}
-
-variable "role_arn" {
-  type        = string
-  description = "The role used to create parallel clusters."
   default     = null
 }
 

@@ -15,16 +15,10 @@
  */
 
 module "pcluster" {
-  source = "../../."
-
-  parameters = {
-    EnableIamAdminAccess = "true"
-  }
-
+  source                = "../../."
   deploy_pcluster_api   = false
   deploy_required_infra = false
-
-  region        = "us-east-1"
-  template_vars = local.config_vars
-  config_path   = "files/pcluster-example-config.yaml"
+  region                = "us-east-1"
+  template_vars         = local.config_vars
+  config_path           = "files/pcluster-example-config.yaml"
 }

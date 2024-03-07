@@ -20,6 +20,6 @@ locals {
     // The subnet and key_pair vars will need to be set inorder to deploy this example.
     subnet   = var.subnet_id
     key_pair = var.keypair_id
-    region   = var.region
+    region   = var.cluster_region
   }
 }
