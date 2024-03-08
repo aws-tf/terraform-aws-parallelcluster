@@ -2,8 +2,8 @@
 terraform {
   required_providers {
     pcluster = {
-      source  = "terraform.local/local/pcluster"
-      version = "~> 3.9.0-1"
+      source  = "hashicorp/terraform-provider-aws-parallelcluster"
+      version = "~> 3.9.0"
     }
   }
 }
