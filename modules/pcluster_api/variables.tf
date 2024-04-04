@@ -1,18 +1,18 @@
 variable "region" {
   type        = string
-  description = "Region to deploy the ParallelCluster API Cloudformation templates."
+  description = "Region to deploy the ParallelCluster API."
   default     = "us-east-1"
 }
 
 variable "api_stack_name" {
   type        = string
-  description = "Name of the CloudFormation stack."
+  description = "Name of the CloudFormation stack use to deploy the ParallelCluster API."
   default     = "ParallelCluster"
 }
 
 variable "api_version" {
   type        = string
-  description = "Version of ParallelCluster to deploy."
+  description = "Version of the ParallelCluster API to deploy."
   default     = "3.9.0"
 }
 

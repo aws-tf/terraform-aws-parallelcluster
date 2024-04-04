@@ -15,13 +15,13 @@
  */
 
 variable "region" {
-  description = "The region where the API gateway is deployed."
+  description = "The region to deploy the ParallelCluster API."
   type        = string
   default     = "us-east-1"
 }
 
 variable "profile" {
   type        = string
-  description = "The AWS profile used to deploy clusters."
+  description = "The AWS profile used to deploy the ParallelCluster API."
   default     = null
 }
