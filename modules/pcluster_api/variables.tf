@@ -13,7 +13,7 @@ variable "api_stack_name" {
 variable "api_version" {
   type        = string
   description = "Version of ParallelCluster to deploy."
-  default     = "3.8.0"
+  default     = "3.9.0"
 }
 
 variable "custom_pcluster_template_uri" {
