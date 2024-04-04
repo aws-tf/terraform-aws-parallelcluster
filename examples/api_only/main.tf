@@ -17,7 +17,7 @@
 module "api" {
   source = "../../modules/pcluster_api"
 
-  api_version = "3.8.0"
+  api_version = "3.9.0"
   parameters = {
     EnableIamAdminAccess = "true"
   }
