@@ -20,8 +20,8 @@ Scheduling:
      ComputeResources:
        - Name: compute
          InstanceType: t3.micro
-         MinCount: "1"
-         MaxCount: "5"
+         MinCount: 1
+         MaxCount: 5
          DisableSimultaneousMultithreading: true
  SlurmSettings:
    QueueUpdateStrategy: TERMINATE 
