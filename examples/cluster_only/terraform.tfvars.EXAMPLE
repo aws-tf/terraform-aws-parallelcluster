@@ -1,4 +1,7 @@
-profile    = "some_profile"
-keypair_id = "pcluster00000000000000000000000000"
-subnet_id  = "subnet-00000000000000000"
-api_stack_name = "someName"
+profile  = "default"
+region = "eu-west-1" # api_region
+api_stack_name = "ParallelClusterAPI"
+
+cluster_region = "eu-central-1"
+subnet_id = "subnet-xxxxxxxxxx"
+keypair_id = "key-xxxxxxxxxx"

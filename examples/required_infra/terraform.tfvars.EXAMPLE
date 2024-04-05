@@ -1,0 +1,8 @@
+profile = "default"
+region = "eu-central-1"
+prefix = "PclusterTerraform"
+public_subnet_az = "eu-central-1a"
+private_subnet_az = "eu-central-1a"
+vpc_cidr_block = "8.0.0.0/16"
+public_subnet_cidrs = ["8.0.1.0/24"]
+private_subnet_cidrs = ["8.0.2.0/24"]
