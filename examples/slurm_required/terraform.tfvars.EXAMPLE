@@ -1,0 +1,4 @@
+profile  = "default"
+region = "eu-central-1"
+public_subnet_az = "eu-central-1a"
+private_subnet_az = "eu-central-1a"
