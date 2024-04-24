@@ -19,6 +19,7 @@ module "pcluster" {
   deploy_pcluster_api   = false
   deploy_required_infra = false
   region                = "us-east-1"
+  api_version           = var.api_version
   template_vars         = local.config_vars
   config_path           = "files/pcluster-example-config.yaml"
 }

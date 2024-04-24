@@ -1,6 +1,7 @@
 profile  = "default"
 region = "eu-west-1" # api_region
 api_stack_name = "ParallelClusterAPI"
+api_version = "3.9.1"
 
 cluster_region = "eu-central-1"
 subnet_id = "subnet-xxxxxxxxxx"
