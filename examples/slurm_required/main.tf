@@ -33,7 +33,7 @@ module "pcluster" {
   public_subnet_az      = var.public_subnet_az
   private_subnet_az     = var.private_subnet_az
 
-  region          = "us-east-1"
+  region          = var.region
   template_vars   = local.config_vars
   cluster_configs = local.cluster_configs
   config_path     = "files/pcluster-example-config.yaml"
