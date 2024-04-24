@@ -37,3 +37,8 @@ variable "private_subnet_az" {
   description = "The az to create the private subnets in."
   default     = "us-east-1a"
 }
+
+variable "api_version" {
+  type        = string
+  description = "Version of the ParallelCluster API to deploy."
+}

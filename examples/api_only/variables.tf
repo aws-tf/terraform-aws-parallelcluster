@@ -25,3 +25,8 @@ variable "profile" {
   description = "The AWS profile used to deploy the ParallelCluster API."
   default     = null
 }
+
+variable "api_version" {
+  type        = string
+  description = "Version of the ParallelCluster API to deploy."
+}
