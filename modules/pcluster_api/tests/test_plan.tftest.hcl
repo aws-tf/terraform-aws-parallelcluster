@@ -23,13 +23,14 @@ provider "aws" {
 run "test_parallelcluster_plan" {
 
   variables {
-    name = "Test_Cluster"
+    api_stack_name = "ParallelCluster"
+    api_version = "3.9.1"
   }
 
   command = plan
 
   assert {
-    condition     = aws_cloudformation_stack.parallelcluster.name == "Test_Cluster"
+    condition     = aws_cloudformation_stack.parallelcluster_api.name == "ParallelCluster"
     error_message = "ParallelCluster API name does not equal Test_Cluster."
   }
 }
