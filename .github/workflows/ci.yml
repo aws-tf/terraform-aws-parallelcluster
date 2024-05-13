@@ -21,8 +21,9 @@ jobs:
           - name: Unit Tests with Terraform 1.5.7
             terraform: 1.5.7
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Terraform
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup Terraform ${{ matrix.terraform }}
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ matrix.terraform }}
@@ -33,7 +34,7 @@ jobs:
         run: terraform fmt -recursive -check ./
 
   end-to-end-tests:
-    name: End To End Tests
+    name: E2E Tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -53,8 +54,9 @@ jobs:
             terraform: 1.6.6
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Terraform
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup Terraform ${{ matrix.terraform }}
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ matrix.terraform }}
