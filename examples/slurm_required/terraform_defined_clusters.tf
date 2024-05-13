@@ -9,13 +9,17 @@ locals {
           Os : "alinux2"
         }
         HeadNode : {
-          InstanceType : "t3.micro"
+          InstanceType : "t3.small"
           Networking : {
-            ElasticIp : true
             SubnetId : local.config_vars.subnet
           }
           Ssh : {
-            KeyName : local.config_vars.key_pair
+            KeyName : local.config_vars.key_pair,
+          }
+          Iam : {
+            AdditionalIamPolicies : [
+              { Policy : "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore" }
+            ]
           }
         }
         Scheduling : {
@@ -25,14 +29,17 @@ locals {
             CapacityType : "ONDEMAND"
             Networking : {
               SubnetIds : [local.config_vars.subnet]
-              AssignPublicIp : true
+            }
+            Iam : {
+              AdditionalIamPolicies : [
+                { Policy : "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore" }
+              ]
             }
             ComputeResources : [{
               Name : "compute"
-              InstanceType : "t3.micro"
+              InstanceType : "t3.small"
               MinCount : "1"
               MaxCount : "4"
-              DisableSimultaneousMultithreading : true
             }]
           }]
           SlurmSettings : {

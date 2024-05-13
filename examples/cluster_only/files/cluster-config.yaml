@@ -2,12 +2,14 @@ Region: ${region}
 Image:
  Os: alinux2
 HeadNode:
- InstanceType: t3.micro
+ InstanceType: t3.small
  Networking:
-   ElasticIp: true
-   SubnetId: ${subnet} 
+   SubnetId: ${subnet}
  Ssh:
-   KeyName: ${key_pair} 
+   KeyName: ${key_pair}
+ Iam:
+   AdditionalIamPolicies:
+     - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
 Scheduling:
  Scheduler: slurm
  SlurmQueues:
@@ -15,14 +17,14 @@ Scheduling:
      CapacityType: ONDEMAND
      Networking:
        SubnetIds:
-         - ${subnet} 
-       AssignPublicIp: true
+         - ${subnet}
+     Iam:
+       AdditionalIamPolicies:
+         - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
      ComputeResources:
        - Name: compute
-         InstanceType: t3.micro
+         InstanceType: t3.small
          MinCount: 1
          MaxCount: 5
-         DisableSimultaneousMultithreading: true
  SlurmSettings:
-   QueueUpdateStrategy: TERMINATE 
-
+   QueueUpdateStrategy: TERMINATE
