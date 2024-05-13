@@ -31,7 +31,7 @@ jobs:
 
         # Verify formatting
       - name: Terraform Format
-        run: terraform fmt -recursive -check ./
+        run: terraform fmt -recursive -check -diff ./
 
   end-to-end-tests:
     name: E2E Tests
