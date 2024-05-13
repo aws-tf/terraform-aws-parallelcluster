@@ -26,7 +26,7 @@ module "pcluster" {
   }
 
   deploy_pcluster_api = true
-  api_stack_name      = "PClusterApi${random_id.suffix.hex}"
+  api_stack_name      = var.api_stack_name != null ? var.api_stack_name : "PClusterApi-${random_id.suffix.hex}"
   api_version         = var.api_version
 
   deploy_required_infra = true

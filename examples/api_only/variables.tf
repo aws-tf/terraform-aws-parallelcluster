@@ -30,3 +30,9 @@ variable "api_version" {
   type        = string
   description = "Version of the ParallelCluster API to deploy."
 }
+
+variable "api_stack_name" {
+  type        = string
+  description = "Name of the CloudFormation stack use to deploy the ParallelCluster API."
+  default     = "ParallelCluster"
+}
