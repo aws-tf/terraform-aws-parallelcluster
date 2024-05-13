@@ -25,7 +25,7 @@ run "test_slurm_required_plan" {
 
     # The test assumes that a PCAPI and a KeyPair exist with the below names.
     api_stack_name = "ParallelCluster"
-    keypair_id = "aws-parallelcluster-terraform-test"
+    keypair_id     = "aws-parallelcluster-terraform-test"
   }
 
   assert {

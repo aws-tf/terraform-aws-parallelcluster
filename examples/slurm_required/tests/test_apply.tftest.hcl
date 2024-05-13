@@ -21,7 +21,7 @@ run "test_slurm_required_apply" {
   command = apply
 
   variables {
-    api_version = "3.9.1"
+    api_version    = "3.9.1"
     api_stack_name = "ParallelCluster-${formatdate("YYYYMMDD-hhmmss", timestamp())}"
   }
 
