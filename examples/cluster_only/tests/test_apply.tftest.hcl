@@ -20,6 +20,14 @@ run "test_slurm_required_apply" {
 
   command = apply
 
+  variables {
+    api_version = "3.9.1"
+
+    # The test assumes that a PCAPI and a KeyPair exist with the below names.
+    api_stack_name = "ParallelCluster"
+    keypair_id = "aws-parallelcluster-terraform-test"
+  }
+
   assert {
     condition     = var.region == "us-east-1"
     error_message = "Region did not default to us-east-1"
