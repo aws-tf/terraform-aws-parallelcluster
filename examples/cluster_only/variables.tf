@@ -17,11 +17,13 @@
 variable "region" {
   description = "The region the API gateway is deployed in."
   type        = string
+  default     = "us-east-1"
 }
 
 variable "cluster_region" {
   description = "The region the clusters will be deployed in."
   type        = string
+  default     = "us-east-1"
 }
 
 variable "profile" {
