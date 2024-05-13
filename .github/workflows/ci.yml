@@ -69,5 +69,7 @@ jobs:
           role-session-name: GitHub_TerraformModuleAwsParallelCluster_End2EndTests
       - name: Terraform Init (${{ matrix.name }})
         run: cd ${{ matrix.path }} && terraform init -backend-config="bucket=${{ secrets.ACTION_E2E_TESTS_BUCKET }}"
+        timeout-minutes: 5
       - name: Terraform Test (${{ matrix.name }})
         run: cd ${{ matrix.path }} && terraform test
+        timeout-minutes: 60
