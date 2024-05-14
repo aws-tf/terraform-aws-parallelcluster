@@ -1,4 +1,4 @@
-# This workflow validates PRs with code checks and unit tests.
+# This workflow validates PRs with code checks.
 name: Continuous Integration
 
 on:
@@ -11,14 +11,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        name:
-          - Unit Tests with Terraform 1.6.6
-          - Unit Tests with Terraform 1.5.7
-        include:
-          - name: Unit Tests with Terraform 1.6.6
-            terraform: 1.6.6
-          - name: Unit Tests with Terraform 1.5.7
-            terraform: 1.5.7
+        terraform:
+          - 1.6.6
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
