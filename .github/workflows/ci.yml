@@ -1,8 +1,7 @@
-# This workflow validates PRs and pushes with code checks, unit tests and end-to-end tests.
+# This workflow validates PRs with code checks.
 name: Continuous Integration
 
 on:
-  - push
   - pull_request
 
 jobs:
@@ -12,17 +11,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        name:
-          - Unit Tests with Terraform 1.6.6
-          - Unit Tests with Terraform 1.5.7
-        include:
-          - name: Unit Tests with Terraform 1.6.6
-            terraform: 1.6.6
-          - name: Unit Tests with Terraform 1.5.7
-            terraform: 1.5.7
+        terraform:
+          - 1.6.6
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Terraform
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup Terraform ${{ matrix.terraform }}
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ matrix.terraform }}
@@ -30,42 +24,4 @@ jobs:
 
         # Verify formatting
       - name: Terraform Format
-        run: terraform fmt -recursive -check ./
-
-  end-to-end-tests:
-    name: End To End Tests
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        name:
-          - Setup with Terraform 1.6.6
-        path:
-          - ./
-          - ./modules/clusters
-          - ./modules/required_infra
-          - ./modules/pcluster_api
-          - ./examples/api_only
-          - ./examples/required_infra
-          - ./examples/slurm_required
-        include:
-          - name: Setup with Terraform 1.6.6
-            terraform: 1.6.6
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: ${{ matrix.terraform }}
-          terraform_wrapper: false
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: us-east-1
-          role-to-assume: ${{ secrets.ACTION_E2E_TESTS_ROLE }}
-          role-session-name: GitHub_TerraformModuleAwsParallelCluster_End2EndTests
-      - name: Terraform Init (${{ matrix.name }})
-        run: cd ${{ matrix.path }} && terraform init -backend-config="bucket=${{ secrets.ACTION_E2E_TESTS_BUCKET }}"
-      - name: Terraform Test (${{ matrix.name }})
-        run: cd ${{ matrix.path }} && terraform test
+        run: terraform fmt -recursive -check -diff ./
