@@ -1,0 +1,52 @@
+# This workflow validates pushes to main branch with end2end tests.
+name: E2E Tests
+
+on:
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  end-to-end-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        path:
+          - ./
+          - ./modules/clusters
+          - ./modules/required_infra
+          - ./modules/pcluster_api
+          - ./examples/api_only
+          - ./examples/required_infra
+          - ./examples/slurm_required
+        terraform:
+          - 1.6.6
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup Terraform ${{ matrix.terraform }}
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ matrix.terraform }}
+          terraform_wrapper: false
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          role-to-assume: ${{ secrets.ACTION_E2E_TESTS_ROLE }}
+          role-session-name: GitHub_TerraformModuleAwsParallelCluster_End2EndTests
+      - name: Terraform Init
+        run: cd ${{ matrix.path }} && terraform init -backend-config="bucket=${{ secrets.ACTION_E2E_TESTS_BUCKET }}"
+        timeout-minutes: 5
+      - name: Terraform Test
+        run: cd ${{ matrix.path }} && terraform test
+        timeout-minutes: 60
