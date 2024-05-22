@@ -8,6 +8,14 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      ref:
+        description: |
+          ref: the branch, tag or SHA to checkout.
+          If empty, the ref is inferred from the event that triggered the workflow.
+        required: false
+        default: ''
+        type: string
 
 permissions:
   id-token: write
@@ -33,6 +41,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
       - name: Setup Terraform ${{ matrix.terraform }}
         uses: hashicorp/setup-terraform@v3
         with:
