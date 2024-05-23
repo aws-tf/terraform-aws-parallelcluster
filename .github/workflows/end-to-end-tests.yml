@@ -34,6 +34,7 @@ jobs:
           - ./modules/required_infra
           - ./modules/pcluster_api
           - ./examples/api_only
+          - ./examples/cluster_only
           - ./examples/required_infra
           - ./examples/slurm_required
         terraform:
