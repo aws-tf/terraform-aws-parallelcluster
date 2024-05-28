@@ -16,7 +16,7 @@
 
 variables {}
 
-run "test_infra_only_plan" {
+run "test_required_infra_plan" {
 
   command = apply
 
