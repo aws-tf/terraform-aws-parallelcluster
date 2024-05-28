@@ -16,6 +16,12 @@
 
 variables {}
 
+run "setup_tests" {
+  module {
+    source = "./tests/setup"
+  }
+}
+
 run "test_cluster_only_apply" {
 
   command = apply
@@ -26,6 +32,7 @@ run "test_cluster_only_apply" {
     # The test assumes that a PCAPI and a KeyPair exist with the below names.
     api_stack_name = "ParallelCluster"
     keypair_id     = "aws-parallelcluster-terraform-test"
+    subnet_id      = run.setup_tests.subnet_id
   }
 
   assert {
