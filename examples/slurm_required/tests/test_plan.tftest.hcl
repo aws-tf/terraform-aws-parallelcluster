@@ -16,13 +16,19 @@
 
 variables {}
 
+run "setup_tests" {
+  module {
+    source = "./tests/setup"
+  }
+}
+
 run "test_slurm_required_plan" {
 
   command = plan
 
   variables {
-    api_version    = "3.9.1"
-    api_stack_name = "ParallelCluster-${formatdate("YYYYMMDD-hhmmss", timestamp())}"
+    api_version    = run.setup_tests.api_version
+    api_stack_name = run.setup_tests.api_stack_name
   }
 
   assert {
