@@ -49,6 +49,20 @@ jobs:
         with:
           terraform_version: ${{ matrix.terraform }}
           terraform_wrapper: false
+      - name: Checkout Provider Repository
+        uses: actions/checkout@v4
+        with:
+          repository: aws-tf/terraform-provider-aws-parallelcluster
+          ref: main
+          path: provider
+      - name: Setup Go 1.22.0
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.22.0
+      - name: Install Provider
+        run: |
+          cd provider
+          make install
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
