@@ -31,6 +31,7 @@ run "test_required_infra_plan" {
     deploy_required_infra = true
     deploy_pcluster_api   = false
     cluster_configs       = {}
+    api_version           = "3.9.1"
   }
 
   command = plan
