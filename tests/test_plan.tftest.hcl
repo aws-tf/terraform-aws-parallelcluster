@@ -57,6 +57,7 @@ run "test_pcluster_api_plan" {
     deploy_required_infra = false
     deploy_pcluster_api   = true
     cluster_configs       = {}
+    api_version           = "3.9.1"
   }
 
   command = plan
