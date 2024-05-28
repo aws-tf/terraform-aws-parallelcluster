@@ -16,7 +16,7 @@
 
 variables {}
 
-run "test_slurm_required_plan" {
+run "test_cluster_only_plan" {
 
   command = plan
 

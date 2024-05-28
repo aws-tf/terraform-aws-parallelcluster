@@ -16,7 +16,7 @@
 
 variables {}
 
-run "test_slurm_required_apply" {
+run "test_cluster_only_apply" {
 
   command = apply
 
