@@ -1,10 +1,10 @@
 locals {
   cluster_configs = {
     ExampleClusterOnly01 : {
-      region : var.region
+      region : local.config_vars.region
       rollbackOnFailure : false
       configuration : {
-        Region : var.region
+        Region : local.config_vars.region
         Image : {
           Os : "alinux2"
         }
