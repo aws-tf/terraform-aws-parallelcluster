@@ -14,6 +14,6 @@
  *
  */
 
-output "parallelcluster" {
-  value = module.pcluster.parallelcluster
+output "clusters" {
+  value = module.pcluster.clusters
 }

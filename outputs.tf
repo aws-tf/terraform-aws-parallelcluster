@@ -43,3 +43,8 @@ output "parallelcluster" {
   description = "The ParallelCluster API Cloudformation Stack outputs. Refer to the ParallelCluster documentation to see available outputs."
   value       = try(module.pcluster_api[0].parallelcluster, null)
 }
+
+output "clusters" {
+  description = "The ParallelCluster clusters."
+  value       = try(module.clusters[0].managed, null)
+}
