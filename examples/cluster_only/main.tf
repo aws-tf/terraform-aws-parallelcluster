@@ -22,5 +22,6 @@ module "pcluster" {
   api_stack_name        = var.api_stack_name
   api_version           = var.api_version
   template_vars         = local.config_vars
+  cluster_configs       = local.cluster_configs
   config_path           = "files/pcluster-example-config.yaml"
 }
