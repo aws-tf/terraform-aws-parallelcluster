@@ -1,9 +1,9 @@
-exampleCluster1:
-  region: ${region} 
-  rollbackOnFailure: true 
+ExampleClusterOnly03:
+  region: ${region}
+  rollbackOnFailure: true
   validationFailureLevel: WARNING
   configuration: files/cluster-config.yaml
-exampleCluster2:
-  region: ${region} 
+ExampleClusterOnly04:
+  region: ${region}
   rollbackOnFailure: false
   configuration: files/cluster-config.yaml
