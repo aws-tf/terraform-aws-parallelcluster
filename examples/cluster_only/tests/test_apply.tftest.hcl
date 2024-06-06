@@ -29,9 +29,8 @@ run "test_cluster_only_apply" {
   variables {
     api_version = "3.9.1"
 
-    # The test assumes that a PCAPI and a KeyPair exist with the below names.
+    # The test assumes that a PCAPI exists with the below name.
     api_stack_name = "ParallelCluster"
-    keypair_id     = "aws-parallelcluster-terraform-test"
     subnet_id      = run.setup_tests.subnet_id
   }
 

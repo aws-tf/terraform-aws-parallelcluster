@@ -17,9 +17,8 @@
 
 locals {
   config_vars = {
-    // The subnet and key_pair vars will need to be set inorder to deploy this example.
-    subnet   = var.subnet_id
-    key_pair = var.keypair_id
-    region   = var.cluster_region
+    // The subnet needs to be set in order to deploy this example.
+    subnet = var.subnet_id
+    region = var.cluster_region
   }
 }

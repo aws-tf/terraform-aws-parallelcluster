@@ -2,6 +2,8 @@ ExampleClusterOnly03:
   region: ${region}
   rollbackOnFailure: true
   validationFailureLevel: WARNING
+  suppressValidators:
+    - type:KeyPairValidator
   configuration: files/cluster-config.yaml
 ExampleClusterOnly04:
   region: ${region}
