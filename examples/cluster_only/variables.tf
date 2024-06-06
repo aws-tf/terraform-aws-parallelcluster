@@ -32,11 +32,6 @@ variable "profile" {
   default     = null
 }
 
-variable "keypair_id" {
-  type        = string
-  description = "The id of the keypair to be used for the ParallelCluster instances."
-}
-
 variable "subnet_id" {
   type        = string
   description = "The id of the subnet to be used for the ParallelCluster instances."

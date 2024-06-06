@@ -5,8 +5,6 @@ HeadNode:
  InstanceType: t3.small
  Networking:
    SubnetId: ${subnet}
- Ssh:
-   KeyName: ${key_pair}
  Iam:
    AdditionalIamPolicies:
      - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore

@@ -5,4 +5,3 @@ api_version = "3.9.1"
 
 cluster_region = "eu-central-1"
 subnet_id = "subnet-xxxxxxxxxx"
-keypair_id = "key-xxxxxxxxxx"

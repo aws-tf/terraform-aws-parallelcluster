@@ -3,6 +3,10 @@ locals {
     ExampleClusterOnly01 : {
       region : local.config_vars.region
       rollbackOnFailure : false
+      validationFailureLevel : "WARNING"
+      suppressValidators : [
+        "type:KeyPairValidator"
+      ]
       configuration : {
         Region : local.config_vars.region
         Image : {
@@ -12,9 +16,6 @@ locals {
           InstanceType : "t3.small"
           Networking : {
             SubnetId : local.config_vars.subnet
-          }
-          Ssh : {
-            KeyName : local.config_vars.key_pair,
           }
           Iam : {
             AdditionalIamPolicies : [
