@@ -56,13 +56,13 @@ variable "private_subnet_cidrs" {
 
 variable "public_subnet_az" {
   type        = string
-  description = "The az to create the public subnets in."
+  description = "The availability zone to create the public subnets in."
   default     = "us-east-1a"
 }
 
 variable "private_subnet_az" {
   type        = string
-  description = "The az to create the private subnets in."
+  description = "The availability zone to create the private subnets in."
   default     = "us-east-1a"
 }
 
