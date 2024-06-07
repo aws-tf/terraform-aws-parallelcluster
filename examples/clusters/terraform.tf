@@ -24,7 +24,7 @@ terraform {
 
   required_providers {
     pcluster = {
-      source  = "terraform.local/local/pcluster"
+      source  = "aws-tf/aws-parallelcluster"
       version = "1.0.0-alpha"
     }
   }
