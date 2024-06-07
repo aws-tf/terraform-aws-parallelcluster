@@ -65,3 +65,12 @@ terraform init
 terraform plan -out tfplan
 terraform apply tfplan
 ```
+
+## Tools
+
+To clean up your local Terraform environment by removing the directories and files
+created by Terraform as part of the init, plan, apply phases, run:
+
+```
+bash tools/clean.sh
+```
