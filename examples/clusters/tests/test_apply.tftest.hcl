@@ -14,18 +14,29 @@
  *
  */
 
-terraform {
-  backend "s3" {
-    # The 'bucket' attribute has been intentionally omitted so that 'terraform init' will prompt the user to specify it.
-    # bucket = "INSERT_HERE_YOUR_BUCKET_NAME"
-    key    = "terraform-aws-parallelcluster/examples/cluster_only/terraform.tfstate"
-    region = "us-east-1"
+variables {}
+
+run "setup_tests" {
+  module {
+    source = "./tests/setup"
+  }
+}
+
+run "test_clusters_apply" {
+
+  command = apply
+
+  variables {
+    api_version = "3.9.1"
+
+    # The test assumes that a PCAPI exists with the below name.
+    api_stack_name = "ParallelCluster"
+    subnet_id      = run.setup_tests.subnet_id
   }
 
-  required_providers {
-    pcluster = {
-      source  = "terraform.local/local/pcluster"
-      version = "1.0.0-alpha"
-    }
+  assert {
+    condition     = var.region == "us-east-1"
+    error_message = "Region did not default to us-east-1"
   }
+
 }
