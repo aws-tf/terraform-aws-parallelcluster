@@ -15,7 +15,7 @@
  */
 
 variable "region" {
-  description = "The region the API gateway is deployed in."
+  description = "The region the ParallelCluster API is deployed in."
   type        = string
   default     = "us-east-1"
 }
@@ -28,7 +28,7 @@ variable "cluster_region" {
 
 variable "profile" {
   type        = string
-  description = "The aws profile used to deploy parallel clusters."
+  description = "The AWS profile used to deploy the clusters."
   default     = null
 }
 
@@ -39,11 +39,11 @@ variable "subnet_id" {
 
 variable "api_stack_name" {
   type        = string
-  description = "The name of the cloudformation stack that deployed the ParallelCluster API."
+  description = "The name of the CloudFormation stack used to deploy the ParallelCluster API."
   default     = "ParallelCluster"
 }
 
 variable "api_version" {
   type        = string
-  description = "Version of the ParallelCluster API to deploy."
+  description = "The version of the ParallelCluster API."
 }
