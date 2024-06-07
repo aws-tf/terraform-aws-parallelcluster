@@ -22,21 +22,17 @@ run "setup_tests" {
   }
 }
 
-run "test_cluster_only_apply" {
+run "test_full_plan" {
 
-  command = apply
+  command = plan
 
   variables {
-    api_version = "3.9.1"
-
-    # The test assumes that a PCAPI exists with the below name.
-    api_stack_name = "ParallelCluster"
-    subnet_id      = run.setup_tests.subnet_id
+    api_version    = run.setup_tests.api_version
+    api_stack_name = run.setup_tests.api_stack_name
   }
 
   assert {
     condition     = var.region == "us-east-1"
     error_message = "Region did not default to us-east-1"
   }
-
 }

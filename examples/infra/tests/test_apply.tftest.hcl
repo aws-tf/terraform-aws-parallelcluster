@@ -14,20 +14,14 @@
  *
  */
 
-terraform {
-  required_version = ">=1.5.7"
+variables {}
 
-  backend "s3" {
-    # The 'bucket' attribute has been intentionally omitted so that 'terraform init' will prompt the user to specify it.
-    # bucket = "INSERT_HERE_YOUR_BUCKET_NAME"
-    key    = "terraform-aws-parallelcluster/examples/slurm_required/terraform.tfstate"
-    region = "us-east-1"
-  }
+run "test_infra_plan" {
 
-  required_providers {
-    pcluster = {
-      source  = "terraform.local/local/pcluster"
-      version = "1.0.0-alpha"
-    }
+  command = apply
+
+  assert {
+    condition     = var.region == "us-east-1"
+    error_message = "Region did not default to us-east-1"
   }
 }

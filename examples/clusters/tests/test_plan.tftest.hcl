@@ -22,13 +22,16 @@ run "setup_tests" {
   }
 }
 
-run "test_api_only_plan" {
+run "test_clusters_plan" {
 
   command = plan
 
   variables {
-    api_version    = run.setup_tests.api_version
-    api_stack_name = run.setup_tests.api_stack_name
+    api_version = "3.9.1"
+
+    # The test assumes that a PCAPI  exists with the below name.
+    api_stack_name = "ParallelCluster"
+    subnet_id      = run.setup_tests.subnet_id
   }
 
   assert {

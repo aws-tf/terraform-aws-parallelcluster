@@ -16,12 +16,24 @@
 
 variables {}
 
-run "test_required_infra_plan" {
+run "setup_tests" {
+  module {
+    source = "./tests/setup"
+  }
+}
 
-  command = plan
+run "test_full_apply" {
+
+  command = apply
+
+  variables {
+    api_version    = run.setup_tests.api_version
+    api_stack_name = run.setup_tests.api_stack_name
+  }
 
   assert {
     condition     = var.region == "us-east-1"
     error_message = "Region did not default to us-east-1"
   }
+
 }

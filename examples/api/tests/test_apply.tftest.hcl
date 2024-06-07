@@ -22,9 +22,9 @@ run "setup_tests" {
   }
 }
 
-run "test_slurm_required_plan" {
+run "test_api_apply" {
 
-  command = plan
+  command = apply
 
   variables {
     api_version    = run.setup_tests.api_version

@@ -14,25 +14,20 @@
  *
  */
 
-variables {}
+terraform {
+  required_version = ">=1.5.7"
 
-run "setup_tests" {
-  module {
-    source = "./tests/setup"
-  }
-}
-
-run "test_api_only_apply" {
-
-  command = apply
-
-  variables {
-    api_version    = run.setup_tests.api_version
-    api_stack_name = run.setup_tests.api_stack_name
+  backend "s3" {
+    # The 'bucket' attribute has been intentionally omitted so that 'terraform init' will prompt the user to specify it.
+    # bucket = "INSERT_HERE_YOUR_BUCKET_NAME"
+    key    = "terraform-aws-parallelcluster/examples/full/terraform.tfstate"
+    region = "us-east-1"
   }
 
-  assert {
-    condition     = var.region == "us-east-1"
-    error_message = "Region did not default to us-east-1"
+  required_providers {
+    pcluster = {
+      source  = "terraform.local/local/pcluster"
+      version = "1.0.0-alpha"
+    }
   }
 }

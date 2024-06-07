@@ -1,3 +1,0 @@
-bucket = "my-bucket"
-key    = "terraform-aws-parallelcluster/examples/api_only/terraform.tfstate"
-region = "my-region"
