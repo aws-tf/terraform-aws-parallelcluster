@@ -8,6 +8,7 @@
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.5.7 |
 | <a name="requirement_archive"></a> [archive](#requirement\_archive) | ~> 2 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3 |
@@ -16,7 +17,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.34.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5 |
 
 ## Modules
 
@@ -26,17 +27,17 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_cloudformation_stack.parallelcluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack) | resource |
+| [aws_cloudformation_stack.parallelcluster_api](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_api_version"></a> [api\_version](#input\_api\_version) | Version of ParallelCluster to deploy. | `string` | `"3.8.0"` | no |
-| <a name="input_custom_pcluster_template_uri"></a> [custom\_pcluster\_template\_uri](#input\_custom\_pcluster\_template\_uri) | Custom CloudFormation ParallelCluster template URI. | `string` | `""` | no |
-| <a name="input_name"></a> [name](#input\_name) | Name of the CloudFormation stack. | `string` | `"ParallelCluster"` | no |
-| <a name="input_parameters"></a> [parameters](#input\_parameters) | Map of parameters to pass to the ParallelCluster CloudFormation template. Refer to the ParallelCluster documentation to see available parameters. | `map(any)` | `{}` | no |
-| <a name="input_region"></a> [region](#input\_region) | Region to deploy the ParallelCluster API Cloudformation templates. | `string` | `"us-east-1"` | no |
+| <a name="input_api_version"></a> [api\_version](#input\_api\_version) | The version of the ParallelCluster API to deploy. | `string` | n/a | yes |
+| <a name="input_api_stack_name"></a> [api\_stack\_name](#input\_api\_stack\_name) | The name of the CloudFormation stack use to deploy the ParallelCluster API. | `string` | `"ParallelCluster"` | no |
+| <a name="input_custom_pcluster_template_uri"></a> [custom\_pcluster\_template\_uri](#input\_custom\_pcluster\_template\_uri) | The URI of a custom CloudFormation template to deploy ParallelCluster API. | `string` | `""` | no |
+| <a name="input_parameters"></a> [parameters](#input\_parameters) | The map of parameters to pass to the ParallelCluster CloudFormation template. Refer to the ParallelCluster documentation to see available parameters. | `map(any)` | `{}` | no |
+| <a name="input_region"></a> [region](#input\_region) | The region to deploy the ParallelCluster API. | `string` | `"us-east-1"` | no |
 
 ## Outputs
 
