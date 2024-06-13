@@ -16,6 +16,26 @@ on:
         required: false
         default: ''
         type: string
+      provider_from_repo:
+        description: |
+          provider_from_repo: if True, the provider will be fetched from the repository and ref specified by
+          'provider_repo' and 'provider_ref'.
+          If False, the provider from Terraform REgistry will be used.
+        required: true
+        default: false
+        type: boolean
+      provider_repo:
+        description: |
+          provider_repo: the repository to checkout for the provider.
+        required: false
+        default: 'aws-tf/terraform-provider-aws-parallelcluster'
+        type: string
+      provider_ref:
+        description: |
+          provider_ref: the branch, tag or SHA to checkout for the provider.
+        required: false
+        default: 'main'
+        type: string
 
 permissions:
   id-token: write
@@ -53,9 +73,10 @@ jobs:
       - name: Checkout Provider Repository
         uses: actions/checkout@v4
         with:
-          repository: aws-tf/terraform-provider-aws-parallelcluster
-          ref: main
+          repository: ${{ inputs.provider_repo }}
+          ref: ${{ inputs.provider_ref }}
           path: provider
+        if:  ${{ inputs.provider_from_repo == true }}
       - name: Setup Go 1.22.0
         uses: actions/setup-go@v5
         with:
@@ -64,6 +85,10 @@ jobs:
         run: |
           cd provider
           make install
+        if:  ${{ inputs.provider_from_repo == true }}
+      - name: Switch to local Provider
+        run: bash tools/use-local-provider.sh
+        if: ${{ inputs.provider_from_repo == true }}
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
