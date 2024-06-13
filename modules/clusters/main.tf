@@ -21,7 +21,7 @@ locals {
   }
 }
 
-resource "pcluster_cluster" "managed_file_configs" {
+resource "aws-parallelcluster_cluster" "managed_file_configs" {
   for_each = local.cluster_file_configs
 
   cluster_name             = each.key
@@ -32,7 +32,7 @@ resource "pcluster_cluster" "managed_file_configs" {
   validation_failure_level = try(each.value.validationFailureLevel, null)
 }
 
-resource "pcluster_cluster" "managed_configs" {
+resource "aws-parallelcluster_cluster" "managed_configs" {
   for_each = local.cluster_configs
 
   cluster_name             = each.key

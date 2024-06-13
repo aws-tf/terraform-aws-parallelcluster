@@ -19,7 +19,7 @@ provider "aws" {
   profile = var.profile
 }
 
-provider "pcluster" {
+provider "aws-parallelcluster" {
   region        = var.region
   profile       = var.profile
   use_user_role = true

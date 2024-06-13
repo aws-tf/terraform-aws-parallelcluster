@@ -20,7 +20,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-provider "pcluster" {
+provider "aws-parallelcluster" {
   endpoint = "null"
   region   = "us-east-1"
 }
