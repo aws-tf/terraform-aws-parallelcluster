@@ -9,7 +9,7 @@ output "key_pair" {
 }
 
 output "private_key" {
-  description = "The private key used to create the key pair for use with pcluster."
+  description = "The private key used to create the key pair for use with the cluster."
   sensitive   = true
   value       = tls_private_key.key
 }
