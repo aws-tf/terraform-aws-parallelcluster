@@ -19,6 +19,39 @@ git secrets --register-aws
  Run `terraform-docs markdown ./` from the root of the repository to regenerate the README
  files.
 
+## Running an example
+Change to a example folder: `cd examples/slurm.required/`
+Initialize terraform: `terraform init`
+Run a plan: `terraform plan -out tfplan`
+Apply the plan: `terraform apply tfplan`
+
+### Terraform State Management
+Terraform state may contain some sensitive data about your resources.
+By default, Terraform stores state files locally, which is an insecure practice.
+In order to secure state files, all the examples are configured to use [S3 as Terraform Backend](https://developer.hashicorp.com/terraform/language/settings/backends/s3),
+so that state files are not stored locally, but on S3.
+
+When running `terraform init`, you will be prompted to specify an existing S3 bucket in `us-east-1` to store state files.
+To customize the S3 destination without being prompted, you can define a backend file `terraform.tfbackend`
+with the following content:
+
+```
+bucket = "my-bucket"
+key    = "path/to/example/example_name/terraform.tfstate"
+region = "my-region"
+```
+
+and run `terraform init -backend-config=terraform.tfbackend`.
+
+Alternatively, you can pass settings one by one to `terraform init` as follows:
+
+```
+terraform init \
+-backend-config="bucket=my-bucket" \
+-backend-config="key=path/to/example/example_name/terraform.tfstate"
+-backend-config="region=my-region"
+```
+
 ## Testing
 Tests require a connection to an AWS account so they cannot be considered unit tests. No resources are currently created. To run tests initialize terraform and run the test command. Tests exist in the main module and each submodule.
 
