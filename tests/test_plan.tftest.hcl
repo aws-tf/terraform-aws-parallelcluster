@@ -43,7 +43,7 @@ run "test_required_infra_plan" {
 
   assert {
     condition     = length(module.pcluster_api) == 0
-    error_message = "The api module should not exist when var.deploy_pcluster_api is set to false."
+    error_message = "The ParallelCluster API module should not exist when var.deploy_pcluster_api is set to false."
   }
 
   assert {
@@ -70,7 +70,7 @@ run "test_pcluster_api_plan" {
 
   assert {
     condition     = length(module.pcluster_api) == 1
-    error_message = "The pcluster api module should exist when var.depoy_pcluster_api is set to true."
+    error_message = "The ParallelCluster API module should exist when var.deploy_pcluster_api is set to true."
   }
 
   assert {

@@ -20,12 +20,12 @@ output "vpc" {
 }
 
 output "key_pair" {
-  description = "The key pair created for use with pcluster."
+  description = "The key pair created for use with AWS ParallelCluster."
   value       = try(module.required_infra[0].key_pair, null)
 }
 
 output "private_key" {
-  description = "The private key used to create the key pair for use with pcluster."
+  description = "The private key used to create the key pair for use with the cluster."
   value       = try(module.required_infra[0].private_key, null)
 }
 

@@ -4,12 +4,12 @@ output "vpc_id" {
 }
 
 output "key_pair_id" {
-  description = "The key pair created for use with pcluster."
+  description = "The key pair created for use with the cluster."
   value       = module.required_infra.key_pair.id
 }
 
 output "private_key_id" {
-  description = "The private key used to create the key pair for use with pcluster."
+  description = "The private key used to create the key pair for use with the cluster."
   sensitive   = true
   value       = module.required_infra.private_key.id
 }
