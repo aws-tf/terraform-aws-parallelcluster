@@ -20,6 +20,7 @@
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5 |
 | <a name="requirement_tls"></a> [tls](#requirement\_tls) | ~> 4 |
 
@@ -27,8 +28,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.34.0 |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | 4.0.5 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | ~> 4 |
 
 ## Modules
 
@@ -57,9 +58,9 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | String to prefix to resource names. | `string` | `"pcluster"` | no |
-| <a name="input_private_subnet_az"></a> [private\_subnet\_az](#input\_private\_subnet\_az) | The az to create the private subnets in. | `string` | `"us-east-1a"` | no |
+| <a name="input_private_subnet_az"></a> [private\_subnet\_az](#input\_private\_subnet\_az) | The availability zone to create the private subnets in. | `string` | `"us-east-1a"` | no |
 | <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | List of cidr blocks to be used for private subnets. Has to be in the vpc cidr block. Cannot conflict with public subnets. | `list(any)` | <pre>[<br>  "10.0.2.0/24"<br>]</pre> | no |
-| <a name="input_public_subnet_az"></a> [public\_subnet\_az](#input\_public\_subnet\_az) | The az to create the public subnets in. | `string` | `"us-east-1a"` | no |
+| <a name="input_public_subnet_az"></a> [public\_subnet\_az](#input\_public\_subnet\_az) | The availability zone to create the public subnets in. | `string` | `"us-east-1a"` | no |
 | <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | List of cidr blocks to be used for public subnets. Has to be in the vpc cidr block. Cannot conflict with private subnets. | `list(any)` | <pre>[<br>  "10.0.1.0/24"<br>]</pre> | no |
 | <a name="input_vpc_cidr_block"></a> [vpc\_cidr\_block](#input\_vpc\_cidr\_block) | The cidr block of the vpc the cluster nodes will be created in. The public and private subnet cidr blocks should fall within this block. | `string` | `"10.0.0.0/16"` | no |
 
@@ -68,7 +69,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_key_pair"></a> [key\_pair](#output\_key\_pair) | The key pair created for use with pcluster. |
-| <a name="output_private_key"></a> [private\_key](#output\_private\_key) | The private key used to create the key pair for use with pcluster. |
+| <a name="output_private_key"></a> [private\_key](#output\_private\_key) | The private key used to create the key pair for use with the cluster. |
 | <a name="output_private_subnets"></a> [private\_subnets](#output\_private\_subnets) | Public subnets. |
 | <a name="output_public_subnets"></a> [public\_subnets](#output\_public\_subnets) | Private subnets. |
 | <a name="output_vpc"></a> [vpc](#output\_vpc) | The VPC used for cluster nodes. |

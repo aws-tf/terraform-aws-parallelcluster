@@ -8,13 +8,14 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_pcluster"></a> [pcluster](#requirement\_pcluster) | ~> 3.9.0-1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.5.7 |
+| <a name="requirement_aws-parallelcluster"></a> [aws-parallelcluster](#requirement\_aws-parallelcluster) | 1.0.0-alpha |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_pcluster"></a> [pcluster](#provider\_pcluster) | 3.9.0 |
+| <a name="provider_aws-parallelcluster"></a> [aws-parallelcluster](#provider\_aws-parallelcluster) | 1.0.0-alpha |
 
 ## Modules
 
@@ -24,8 +25,8 @@ No modules.
 
 | Name | Type |
 |------|------|
-| pcluster_cluster.managed_configs | resource |
-| pcluster_cluster.managed_file_configs | resource |
+| [aws-parallelcluster_cluster.managed_configs](https://registry.terraform.io/providers/aws-tf/aws-parallelcluster/1.0.0-alpha/docs/resources/cluster) | resource |
+| [aws-parallelcluster_cluster.managed_file_configs](https://registry.terraform.io/providers/aws-tf/aws-parallelcluster/1.0.0-alpha/docs/resources/cluster) | resource |
 
 ## Inputs
 
