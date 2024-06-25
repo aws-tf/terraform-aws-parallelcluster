@@ -9,13 +9,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.5.7 |
-| <a name="requirement_aws-parallelcluster"></a> [aws-parallelcluster](#requirement\_aws-parallelcluster) | 1.0.0-alpha |
+| <a name="requirement_aws-parallelcluster"></a> [aws-parallelcluster](#requirement\_aws-parallelcluster) | ~> 1.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws-parallelcluster"></a> [aws-parallelcluster](#provider\_aws-parallelcluster) | 1.0.0-alpha |
+| <a name="provider_aws-parallelcluster"></a> [aws-parallelcluster](#provider\_aws-parallelcluster) | ~> 1.0.0 |
 
 ## Modules
 
@@ -25,8 +25,8 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws-parallelcluster_cluster.managed_configs](https://registry.terraform.io/providers/aws-tf/aws-parallelcluster/1.0.0-alpha/docs/resources/cluster) | resource |
-| [aws-parallelcluster_cluster.managed_file_configs](https://registry.terraform.io/providers/aws-tf/aws-parallelcluster/1.0.0-alpha/docs/resources/cluster) | resource |
+| aws-parallelcluster_cluster.managed_configs | resource |
+| aws-parallelcluster_cluster.managed_file_configs | resource |
 
 ## Inputs
 
@@ -42,5 +42,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_managed"></a> [managed](#output\_managed) | Description of managed clusters. |
+| <a name="output_clusters"></a> [clusters](#output\_clusters) | Description of managed clusters. |
 <!-- END_TF_DOCS -->
