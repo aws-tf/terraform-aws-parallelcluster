@@ -14,6 +14,14 @@
  *
  */
 
-output "parallelcluster" {
-  value = module.pcluster.parallelcluster
+output "pcluster_api_stack_name" {
+  value = module.pcluster.pcluster_api_stack_name
+}
+
+output "pcluster_api_stack_parameters" {
+  value = module.pcluster.pcluster_api_stack_parameters
+}
+
+output "pcluster_api_stack_outputs" {
+  value = module.pcluster.pcluster_api_stack_outputs
 }

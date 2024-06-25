@@ -39,12 +39,22 @@ output "private_subnets" {
   value       = try(module.required_infra[0].private_subnets, null)
 }
 
-output "parallelcluster" {
-  description = "The ParallelCluster API Cloudformation Stack outputs. Refer to the ParallelCluster documentation to see available outputs."
-  value       = try(module.pcluster_api[0].parallelcluster, null)
+output "pcluster_api_stack_name" {
+  description = "The ParallelCluster API Cloudformation Stack name."
+  value       = try(module.pcluster_api[0].stack_name, null)
+}
+
+output "pcluster_api_stack_parameters" {
+  description = "The ParallelCluster API Cloudformation Stack parameters."
+  value       = try(module.pcluster_api[0].stack_parameters, null)
+}
+
+output "pcluster_api_stack_outputs" {
+  description = "The ParallelCluster API Cloudformation Stack outputs."
+  value       = try(module.pcluster_api[0].stack_outputs, null)
 }
 
 output "clusters" {
   description = "The ParallelCluster clusters."
-  value       = try(module.clusters[0].managed, null)
+  value       = try(module.clusters[0].clusters, null)
 }

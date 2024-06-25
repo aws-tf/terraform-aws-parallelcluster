@@ -22,6 +22,6 @@ provider "aws" {
 provider "aws-parallelcluster" {
   region   = var.region
   profile  = var.profile
-  endpoint = module.pcluster.parallelcluster.ParallelClusterApiInvokeUrl
-  role_arn = module.pcluster.parallelcluster.ParallelClusterApiUserRole
+  endpoint = module.pcluster.pcluster_api_stack_outputs.ParallelClusterApiInvokeUrl
+  role_arn = module.pcluster.pcluster_api_stack_outputs.ParallelClusterApiUserRole
 }
