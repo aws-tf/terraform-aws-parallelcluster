@@ -59,7 +59,7 @@ This project is licensed under the Apache-2.0 License.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.5.7 |
-| <a name="requirement_aws-parallelcluster"></a> [aws-parallelcluster](#requirement\_aws-parallelcluster) | 1.0.0-alpha |
+| <a name="requirement_aws-parallelcluster"></a> [aws-parallelcluster](#requirement\_aws-parallelcluster) | ~> 1.0.0 |
 
 ## Providers
 
@@ -106,7 +106,9 @@ No resources.
 |------|-------------|
 | <a name="output_clusters"></a> [clusters](#output\_clusters) | The ParallelCluster clusters. |
 | <a name="output_key_pair"></a> [key\_pair](#output\_key\_pair) | The key pair created for use with AWS ParallelCluster. |
-| <a name="output_parallelcluster"></a> [parallelcluster](#output\_parallelcluster) | The ParallelCluster API Cloudformation Stack outputs. Refer to the ParallelCluster documentation to see available outputs. |
+| <a name="output_pcluster_api_stack_name"></a> [pcluster\_api\_stack\_name](#output\_pcluster\_api\_stack\_name) | The ParallelCluster API Cloudformation Stack name. |
+| <a name="output_pcluster_api_stack_outputs"></a> [pcluster\_api\_stack\_outputs](#output\_pcluster\_api\_stack\_outputs) | The ParallelCluster API Cloudformation Stack outputs. |
+| <a name="output_pcluster_api_stack_parameters"></a> [pcluster\_api\_stack\_parameters](#output\_pcluster\_api\_stack\_parameters) | The ParallelCluster API Cloudformation Stack parameters. |
 | <a name="output_private_key"></a> [private\_key](#output\_private\_key) | The private key used to create the key pair for use with the cluster. |
 | <a name="output_private_subnets"></a> [private\_subnets](#output\_private\_subnets) | Public subnets. |
 | <a name="output_public_subnets"></a> [public\_subnets](#output\_public\_subnets) | Private subnets. |

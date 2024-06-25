@@ -43,5 +43,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_parallelcluster"></a> [parallelcluster](#output\_parallelcluster) | The ParallelCluster API Cloudformation Stack outputs. Refer to the ParallelCluster documentation to see available outputs. |
+| <a name="output_stack_name"></a> [stack\_name](#output\_stack\_name) | The ParallelCluster API Cloudformation Stack name. |
+| <a name="output_stack_outputs"></a> [stack\_outputs](#output\_stack\_outputs) | The ParallelCluster API Cloudformation Stack outputs. |
+| <a name="output_stack_parameters"></a> [stack\_parameters](#output\_stack\_parameters) | The ParallelCluster API Cloudformation Stack parameters. |
 <!-- END_TF_DOCS -->
