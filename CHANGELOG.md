@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.0
+
+**CHANGES**
+
+* Use AWS ParallelCluster Terraform provider 1.x in all module examples
 
 ## 1.0.0
 
