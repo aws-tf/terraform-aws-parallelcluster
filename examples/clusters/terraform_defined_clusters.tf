@@ -47,6 +47,26 @@ locals {
             QueueUpdateStrategy : "TERMINATE"
           }
         }
+        "LoginNodes" : {
+          "Pools" : [
+            {
+              "Name" : "login"
+              "InstanceType" : "t3.small"
+              "Count" : 1
+              "Networking" : {
+                "SubnetIds" : [local.config_vars.subnet]
+              },
+              "Iam" : {
+                "AdditionalIamPolicies" : [
+                  {
+                    "Policy" : "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+                  }
+                ]
+              },
+              "GracetimePeriod" : 3
+            }
+          ]
+        }
       }
     }
     ExampleClusterOnly02 : {
