@@ -59,7 +59,7 @@ This project is licensed under the Apache-2.0 License.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.5.7 |
-| <a name="requirement_aws-parallelcluster"></a> [aws-parallelcluster](#requirement\_aws-parallelcluster) | ~> 1.0.0 |
+| <a name="requirement_aws-parallelcluster"></a> [aws-parallelcluster](#requirement\_aws-parallelcluster) | ~> 1.0 |
 
 ## Providers
 
