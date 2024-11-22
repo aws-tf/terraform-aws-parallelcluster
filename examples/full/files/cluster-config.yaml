@@ -28,3 +28,15 @@ Scheduling:
           MaxCount: 5
   SlurmSettings:
     QueueUpdateStrategy: TERMINATE
+LoginNodes:
+  Pools:
+    - Name: login
+      InstanceType: t3.small
+      Count: 1
+      Networking:
+        SubnetIds:
+          - ${subnet}
+      Iam:
+        AdditionalIamPolicies:
+          - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      GracetimePeriod: 3
