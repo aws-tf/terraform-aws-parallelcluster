@@ -1,7 +1,7 @@
 resource "random_uuid" "test" {}
 
 output "api_version" {
-  value = "3.9.1"
+  value = "3.11.1"
 }
 
 output "api_stack_name" {
