@@ -1,9 +1,9 @@
-ExampleSlurmRequired03:
+ExampleFull03:
   region: ${region}
   rollbackOnFailure: true
   validationFailureLevel: WARNING
   configuration: files/cluster-config.yaml
-ExampleSlurmRequired04:
+ExampleFull04:
   region: ${region}
   rollbackOnFailure: false
   configuration: files/cluster-config.yaml
