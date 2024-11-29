@@ -1,6 +1,6 @@
 locals {
   cluster_configs = {
-    ExampleSlurmRequired01 : {
+    ExampleFull01 : {
       region : local.config_vars.region
       rollbackOnFailure : false
       configuration : {
@@ -68,7 +68,7 @@ locals {
         }
       }
     }
-    ExampleSlurmRequired02 : {
+    ExampleFull02 : {
       configuration : "files/cluster-config.yaml"
     }
   }
