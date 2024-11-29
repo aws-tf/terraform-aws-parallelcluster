@@ -5,5 +5,5 @@ output "api_version" {
 }
 
 output "api_stack_name" {
-  value = "ParallelCluster-${random_uuid.test.result}"
+  value = "ParallelClusterAPI-${random_uuid.test.result}"
 }
