@@ -80,6 +80,7 @@ To check without fixing use: `terraform fmt -recursive -check ./`
 
 ## Examples
 Three examples exist inside the `./examples` folder. By default these examples will deploy resources using the default profile in us-east-1. If customization is needed variables can be changed using a tfvars file.
+For sake of simplicity, the provided examples do not have a state locking mechanism; hence they do not support concurrent deployments insisting on the same state files.
 
 To customize first create a `terraform.tfvars` similar to the following in one of the example folders:
 
