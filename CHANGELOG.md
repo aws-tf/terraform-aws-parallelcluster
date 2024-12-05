@@ -7,6 +7,9 @@
 - Use ParallelCluster API 3.11.1 in all examples with stack name ParallelClusterAPI.
 - Deploy login nodes in all module examples.
 
+**BUG FIXES**
+- In submodule `required_infra`, enable DNS hostnames for the created VPC to prevent validation error upon cluster creation.
+
 
 ## 1.0.0
 
