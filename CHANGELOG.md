@@ -7,6 +7,8 @@
 - Use ParallelCluster API 3.11.1 in all examples with stack name ParallelClusterAPI.
 - Deploy login nodes in all module examples.
 
+**BUG FIX**
+- Fix submodule required infra by enabling DNS hostnames in the deployed VPC.
 
 ## 1.0.0
 
