@@ -4,7 +4,7 @@ setup:
 	@echo "[INFO] Add your settings to terraform.tfbackend and terraform.tfvars"
 
 deploy:
-	terraform init -backend-config=terraform.tfbackend
+	terraform init -backend-config=terraform.tfbackend --upgrade
 	terraform plan -out tfplan
 	terraform apply tfplan
 
