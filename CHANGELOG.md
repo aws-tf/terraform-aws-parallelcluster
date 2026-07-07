@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+**CHANGES**
+- Use ParallelCluster API 3.15.1 in all examples.
+
 ## 1.1.0
 
 **CHANGES**
