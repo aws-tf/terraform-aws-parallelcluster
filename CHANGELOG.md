@@ -5,6 +5,9 @@
 **CHANGES**
 - Use ParallelCluster API 3.15.1 in all examples.
 
+**BUG FIXES**
+- In submodule `pcluster_api`, attach a supplemental IAM policy to the API Lambda role granting `elasticloadbalancing:CreateListener` and `CreateTargetGroup` without a tag-key condition. The published ParallelCluster policies template grants these only when the request carries no tag keys other than `parallelcluster:cluster-name`, which ParallelCluster itself violates when tagging LoginNodes listeners/target groups, causing the LoginNodesNestedStack to roll back on create/update.
+
 ## 1.1.0
 
 **CHANGES**

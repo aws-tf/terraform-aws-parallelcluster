@@ -10,5 +10,5 @@ resource "aws_cloudformation_stack" "parallelcluster_api" {
   template_url       = local.use_custom_pcluster_template_uri ? var.custom_pcluster_template_uri : local.pcluster_template_uri
   timeout_in_minutes = 10
   capabilities       = ["CAPABILITY_NAMED_IAM", "CAPABILITY_AUTO_EXPAND"]
-  parameters         = var.parameters
+  parameters         = local.parameters_with_login_nodes_elb
 }
