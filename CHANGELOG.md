@@ -3,8 +3,8 @@
 ## 1.2.0
 
 **CHANGES**
-- Use ParallelCluster API 3.15.1 in all examples.
 - Allow AWS provider v6.
+- Use ParallelCluster API 3.15.1 in all examples.
 
 ## 1.1.0
 
