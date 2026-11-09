@@ -1,7 +1,45 @@
+# Options reference:
+# https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference
+#
+# `open-pull-requests-limit` caps version updates only; security updates use a
+# separate fixed limit of 10 that this key cannot change.
+# We align the two limits to the same value for consistency.
+#
+# Why groups: by default Dependabot opens one pull request per dependency, per
+# directory. Dependencies matching a group share one pull request;
+# anything matching no group still gets its own.
+#
+# We therefore group the third-party hashicorp providers, which move
+# independently of this module and are fine to review as a batch, and leave
+# aws-tf/aws-parallelcluster out of any group: it is our own provider and its
+# constraint is part of this module's public contract, so bumping it is a
+# release decision that deserves its own pull request.
 version: 2
 updates:
-  - package-ecosystem: gomod
+  # Terraform updates are not recursive: `directory: /` would see only the root
+  # terraform.tf and skip modules/ and examples/.
+  - package-ecosystem: terraform
+    directories:
+      - /
+      - /modules/*
+      - /examples/*
+      - /examples/*/tests/setup
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    groups:
+      hashicorp-providers:
+        patterns:
+          - hashicorp/*
+
+  # GitHub Actions require to scan the directory / by design.
+  # Ref: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference#directories-or-directory--
+  - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: daily
-    open-pull-requests-limit: 30
+    open-pull-requests-limit: 10
+    groups:
+      github-actions:
+        patterns:
+          - "*"
