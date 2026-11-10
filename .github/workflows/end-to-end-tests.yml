@@ -77,10 +77,12 @@ jobs:
           ref: ${{ inputs.provider_ref }}
           path: provider
         if:  ${{ inputs.provider_from_repo == true }}
-      - name: Setup Go 1.22.0
+        # Builds the provider from source, so this must satisfy the `go`
+        # directive in the provider's go.mod.
+      - name: Setup Go
         uses: actions/setup-go@v7
         with:
-          go-version: 1.22.0
+          go-version: 1.27.4
       - name: Install Provider
         run: |
           cd provider
