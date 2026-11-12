@@ -1,6 +1,6 @@
 locals {
   cluster_configs = {
-    ExampleFull01 : {
+    "ExampleFull01${var.name_suffix}" : {
       region : local.config_vars.region
       rollbackOnFailure : false
       configuration : {
@@ -68,7 +68,7 @@ locals {
         }
       }
     }
-    ExampleFull02 : {
+    "ExampleFull02${var.name_suffix}" : {
       configuration : "files/cluster-config.yaml"
     }
   }

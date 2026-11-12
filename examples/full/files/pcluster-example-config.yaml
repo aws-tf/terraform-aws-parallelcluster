@@ -1,9 +1,9 @@
-ExampleFull03:
+ExampleFull03${name_suffix}:
   region: ${region}
   rollbackOnFailure: true
   validationFailureLevel: WARNING
   configuration: files/cluster-config.yaml
-ExampleFull04:
+ExampleFull04${name_suffix}:
   region: ${region}
   rollbackOnFailure: false
   configuration: files/cluster-config.yaml
