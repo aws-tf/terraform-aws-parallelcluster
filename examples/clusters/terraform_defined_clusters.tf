@@ -10,7 +10,7 @@ locals {
       configuration : {
         Region : local.config_vars.region
         Image : {
-          Os : "alinux2"
+          Os : "alinux2023"
         }
         HeadNode : {
           InstanceType : "t3.small"
