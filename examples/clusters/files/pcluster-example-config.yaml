@@ -1,11 +1,11 @@
-ExampleClusterOnly03:
+ExampleClusterOnly03${name_suffix}:
   region: ${region}
   rollbackOnFailure: true
   validationFailureLevel: WARNING
   suppressValidators:
     - type:KeyPairValidator
   configuration: files/cluster-config.yaml
-ExampleClusterOnly04:
+ExampleClusterOnly04${name_suffix}:
   region: ${region}
   rollbackOnFailure: false
   configuration: files/cluster-config.yaml

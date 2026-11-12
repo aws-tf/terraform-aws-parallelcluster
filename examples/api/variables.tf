@@ -36,3 +36,9 @@ variable "api_stack_name" {
   description = "The name of the CloudFormation stack used to deploy the ParallelCluster API."
   default     = "ParallelCluster"
 }
+
+variable "name_suffix" {
+  type        = string
+  description = "Suffix appended to the name of the CloudFormation stack created by this example."
+  default     = ""
+}

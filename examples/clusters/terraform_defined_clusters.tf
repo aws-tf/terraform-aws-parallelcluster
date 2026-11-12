@@ -1,6 +1,6 @@
 locals {
   cluster_configs = {
-    ExampleClusterOnly01 : {
+    "ExampleClusterOnly01${var.name_suffix}" : {
       region : local.config_vars.region
       rollbackOnFailure : false
       validationFailureLevel : "WARNING"
@@ -69,7 +69,7 @@ locals {
         }
       }
     }
-    ExampleClusterOnly02 : {
+    "ExampleClusterOnly02${var.name_suffix}" : {
       configuration : "files/cluster-config.yaml"
     }
   }

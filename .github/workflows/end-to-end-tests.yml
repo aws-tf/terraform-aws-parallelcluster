@@ -105,12 +105,31 @@ jobs:
           aws-region: us-east-1
           role-to-assume: ${{ secrets.ACTION_E2E_TESTS_ROLE }}
           role-session-name: GitHub_${{ github.event.repository.name }}_End2EndTests
+      # Names every resource the tests create after this workflow run, so that
+      # concurrent runs cannot clash.
+      - name: Compute Resource Name Suffix
+        env:
+          GH_RUN_ID: ${{ github.run_id }}
+          GH_RUN_ATTEMPT: ${{ github.run_attempt }}
+          GH_JOB_INDEX: ${{ strategy.job-index }}
+        run: |
+          SUFFIX="-gh${GH_RUN_ID}-${GH_RUN_ATTEMPT}-${GH_JOB_INDEX}"
+          echo "E2E_NAME_SUFFIX=${SUFFIX}" >> "${GITHUB_ENV}"
+          # An env var rather than a 'terraform test -var': only some of the
+          # configurations this job runs against declare this variable, and
+          # -var fails on the ones that do not, while TF_VAR_ is ignored.
+          echo "TF_VAR_name_suffix=${SUFFIX}" >> "${GITHUB_ENV}"
+          echo "Resource name suffix: ${SUFFIX}"
       - name: Terraform Init
         run: cd ${{ matrix.path }} && terraform init -backend-config="bucket=${{ secrets.ACTION_E2E_TESTS_BUCKET }}"
         timeout-minutes: 5
       - name: Terraform Test
         run: cd ${{ matrix.path }} && terraform test
         timeout-minutes: 60
+      - name: Clean Up Leftover Resources
+        if: always()
+        run: bash tools/cleanup-e2e-leftovers.sh "${E2E_NAME_SUFFIX}"
+        timeout-minutes: 15
 
   # Publishes the outcome of the E2E tests as a CloudWatch metric, so that a
   # CloudWatch alarm can make failures visible.
