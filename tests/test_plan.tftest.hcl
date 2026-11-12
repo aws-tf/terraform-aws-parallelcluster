@@ -31,7 +31,7 @@ run "test_required_infra_plan" {
     deploy_required_infra = true
     deploy_pcluster_api   = false
     cluster_configs       = {}
-    api_version           = "3.15.1"
+    api_version           = "3.16.2"
   }
 
   command = plan
@@ -58,7 +58,7 @@ run "test_pcluster_api_plan" {
     deploy_required_infra = false
     deploy_pcluster_api   = true
     cluster_configs       = {}
-    api_version           = "3.15.1"
+    api_version           = "3.16.2"
   }
 
   command = plan
