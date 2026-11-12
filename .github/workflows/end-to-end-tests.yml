@@ -36,6 +36,12 @@ on:
         required: false
         default: 'main'
         type: string
+      publish_metric:
+        description: |
+          publish_metric: if True, the outcome of the tests is published as an alarmed CloudWatch metric.
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   id-token: write
@@ -105,3 +111,39 @@ jobs:
       - name: Terraform Test
         run: cd ${{ matrix.path }} && terraform test
         timeout-minutes: 60
+
+  # Publishes the outcome of the E2E tests as a CloudWatch metric, so that a
+  # CloudWatch alarm can make failures visible.
+  # Pushes to main always report; a manual run only does so on request.
+  publish-metric:
+    name: Publish E2E Outcome Metric
+    needs: end-to-end-tests
+    # A cancelled or skipped test run says nothing about the health of the branch: it must
+    # publish no data point at all, so that the alarm keeps the state it already had.
+    if: >-
+      ${{ always()
+      && (github.event_name == 'push' || inputs.publish_metric)
+      && (needs.end-to-end-tests.result == 'success'
+      || needs.end-to-end-tests.result == 'failure') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-region: us-east-1
+          role-to-assume: ${{ secrets.ACTION_E2E_TESTS_ROLE }}
+          role-session-name: GitHub_${{ github.event.repository.name }}_E2EMetrics
+      - name: Publish E2E Outcome Metric
+        env:
+          METRIC_VALUE: ${{ needs.end-to-end-tests.result == 'failure' && 1 || 0 }}
+          GH_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          GH_REF_NAME: ${{ github.ref_name }}
+        run: |
+          aws cloudwatch put-metric-data \
+            --region us-east-1 \
+            --namespace AWS/ParallelCluster \
+            --metric-name TerraformModuleE2ETestFailure \
+            --unit Count \
+            --value "${METRIC_VALUE}" \
+            --dimensions "Organization=${GH_REPOSITORY_OWNER}" "Branch=${GH_REF_NAME}"
+        timeout-minutes: 5
