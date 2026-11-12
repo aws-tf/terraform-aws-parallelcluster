@@ -14,9 +14,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # The oldest version HashiCorp still supports, and the newest one. HashiCorp
+        # supports the current minor and the one before it, so 1.16 goes end of life when
+        # 1.18 is released: bump both entries then.
+        # See: https://endoflife.date/terraform
         terraform:
-          - 1.5.7
-          - 1.8.0
+          - 1.16.7
+          - 1.17.2
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v7
