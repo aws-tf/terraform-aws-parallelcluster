@@ -141,9 +141,9 @@ jobs:
         run: |
           aws cloudwatch put-metric-data \
             --region us-east-1 \
-            --namespace AWS/ParallelCluster \
+            --namespace ParallelCluster \
             --metric-name TerraformModuleE2ETestFailure \
             --unit Count \
             --value "${METRIC_VALUE}" \
-            --dimensions "Organization=${GH_REPOSITORY_OWNER}" "Branch=${GH_REF_NAME}"
+            --dimensions "Organization=${GH_REPOSITORY_OWNER},Branch=${GH_REF_NAME}"
         timeout-minutes: 5
