@@ -18,7 +18,8 @@
 locals {
   config_vars = {
     // The subnet needs to be set in order to deploy this example.
-    subnet = var.subnet_id
-    region = var.cluster_region
+    subnet      = var.subnet_id
+    region      = var.cluster_region
+    name_suffix = var.name_suffix
   }
 }

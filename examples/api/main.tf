@@ -18,7 +18,7 @@ module "api" {
   source = "../../modules/pcluster_api"
 
   api_version    = var.api_version
-  api_stack_name = var.api_stack_name
+  api_stack_name = "${var.api_stack_name}${var.name_suffix}"
   parameters = {
     EnableIamAdminAccess = "true"
   }

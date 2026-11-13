@@ -47,3 +47,9 @@ variable "api_version" {
   type        = string
   description = "The version of the ParallelCluster API."
 }
+
+variable "name_suffix" {
+  type        = string
+  description = "Suffix appended to the name of every cluster created by this example."
+  default     = ""
+}
