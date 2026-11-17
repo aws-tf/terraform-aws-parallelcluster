@@ -8,15 +8,32 @@ permissions:
   contents: read
 
 jobs:
-  code-checks:
-    name: Code Checks
+  # 'terraform validate' reads the provider schemas, so unlike 'fmt' it catches a
+  # provider version bump that breaks the module. It looks at one working directory
+  # at a time, hence one matrix entry per root configuration. The submodules are
+  # absent because validation walks the module tree the examples already call.
+  check-terraform:
+    name: Check Terraform
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
+        path:
+          - ./
+          - ./examples/api
+          - ./examples/api/tests/setup
+          - ./examples/clusters
+          - ./examples/clusters/tests/setup
+          - ./examples/full
+          - ./examples/full/tests/setup
+          - ./examples/infra
+        # The oldest version HashiCorp still supports, and the newest one. HashiCorp
+        # supports the current minor and the one before it, so 1.16 goes end of life when
+        # 1.18 is released: bump both entries then.
+        # See: https://endoflife.date/terraform
         terraform:
-          - 1.5.7
-          - 1.8.0
+          - 1.16.7
+          - 1.17.2
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v7
@@ -26,6 +43,17 @@ jobs:
           terraform_version: ${{ matrix.terraform }}
           terraform_wrapper: false
 
-        # Verify formatting
+        # Covers the whole repository, so it runs once per Terraform version.
       - name: Terraform Format
+        if: matrix.path == './'
         run: terraform fmt -recursive -check -diff ./
+
+        # -backend=false: the examples omit the S3 bucket on purpose, and validation
+        # needs no state. -input=false: a missing value must fail, not hang.
+        # -upgrade: lock files are Git-ignored, so resolve what the constraints allow.
+      - name: Terraform Init
+        run: terraform -chdir=${{ matrix.path }} init -backend=false -input=false -upgrade -no-color
+        timeout-minutes: 10
+      - name: Terraform Validate
+        run: terraform -chdir=${{ matrix.path }} validate -no-color
+        timeout-minutes: 5
