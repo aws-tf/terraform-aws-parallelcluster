@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+**CHANGES**
+- Use ParallelCluster API 3.16.2 in all examples and tests.
+- Use Amazon Linux 2023 rather than Amazon Linux 2 in all examples.
+
 ## 1.2.0
 
 **CHANGES**
