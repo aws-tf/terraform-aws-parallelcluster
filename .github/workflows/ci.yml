@@ -8,28 +8,16 @@ permissions:
   contents: read
 
 jobs:
-  # 'terraform validate' reads the provider schemas, so unlike 'fmt' it catches a
-  # provider version bump that breaks the module. It looks at one working directory
-  # at a time, hence one matrix entry per root configuration. The submodules are
-  # absent because validation walks the module tree the examples already call.
-  check-terraform:
-    name: Check Terraform
+  # `terraform fmt -recursive` covers the whole repository in one pass.
+  terraform-format:
+    name: Terraform Format
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        path:
-          - ./
-          - ./examples/api
-          - ./examples/api/tests/setup
-          - ./examples/clusters
-          - ./examples/clusters/tests/setup
-          - ./examples/full
-          - ./examples/full/tests/setup
-          - ./examples/infra
         # The oldest version HashiCorp still supports, and the newest one. HashiCorp
         # supports the current minor and the one before it, so 1.16 goes end of life when
-        # 1.18 is released: bump both entries then.
+        # 1.18 is released: bump both entries then, here and in Terraform Validate below.
         # See: https://endoflife.date/terraform
         terraform:
           - 1.16.7
@@ -42,18 +30,71 @@ jobs:
         with:
           terraform_version: ${{ matrix.terraform }}
           terraform_wrapper: false
-
-        # Covers the whole repository, so it runs once per Terraform version.
       - name: Terraform Format
-        if: matrix.path == './'
         run: terraform fmt -recursive -check -diff ./
 
-        # -backend=false: the examples omit the S3 bucket on purpose, and validation
-        # needs no state. -input=false: a missing value must fail, not hang.
-        # -upgrade: lock files are Git-ignored, so resolve what the constraints allow.
-      - name: Terraform Init
-        run: terraform -chdir=${{ matrix.path }} init -backend=false -input=false -upgrade -no-color
-        timeout-minutes: 10
-      - name: Terraform Validate
-        run: terraform -chdir=${{ matrix.path }} validate -no-color
-        timeout-minutes: 5
+  # 'terraform validate' reads the provider schemas, so unlike 'fmt' it catches a
+  # provider change that breaks these configurations. It looks at one working
+  # directory at a time, hence the loop.
+  terraform-validate:
+    name: Terraform Validate
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Keep in step with Terraform Format above.
+        terraform:
+          - 1.16.7
+          - 1.17.2
+    env:
+      # One provider download shared by every `init` below, rather than one each.
+      TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+      - name: Setup Terraform ${{ matrix.terraform }}
+        uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: ${{ matrix.terraform }}
+          terraform_wrapper: false
+
+        # -backend=false: the examples declare no backend and validation needs no
+        # state. -input=false: a missing value must fail, not hang. -upgrade: lock
+        # files are Git-ignored, so resolve what the constraints allow.
+      - name: Validate every root configuration
+        run: |
+          mkdir -p "${TF_PLUGIN_CACHE_DIR}"
+
+          # The module itself and the examples. Keep in step with the repository.
+          # `modules/` is absent: validation reaches the submodules through the
+          # examples calling them, and they take their provider from the caller.
+          configurations=(
+            ./
+            ./examples/api
+            ./examples/api/tests/setup
+            ./examples/clusters
+            ./examples/clusters/tests/setup
+            ./examples/full
+            ./examples/full/tests/setup
+            ./examples/infra
+          )
+
+          # Every configuration is validated even once one has failed, so that a
+          # run reports all of the broken ones.
+          invalid=()
+          for configuration in "${configurations[@]}"; do
+            echo "::group::${configuration}"
+            if terraform -chdir="${configuration}" init -backend=false -input=false -upgrade -no-color \
+              && terraform -chdir="${configuration}" validate -no-color; then
+              echo "${configuration}: valid"
+            else
+              invalid+=("${configuration}")
+            fi
+            echo "::endgroup::"
+          done
+          if [ ${#invalid[@]} -gt 0 ]; then
+            printf 'Invalid: %s\n' "${invalid[@]}" >&2
+            exit 1
+          fi
+          echo "All root configurations are valid."
+        timeout-minutes: 30
