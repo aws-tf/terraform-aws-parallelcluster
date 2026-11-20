@@ -24,7 +24,7 @@ run "test_parallelcluster_plan" {
 
   variables {
     api_stack_name = "ParallelClusterAPI"
-    api_version    = "3.16.2"
+    api_version    = "3.16.3"
   }
 
   command = plan

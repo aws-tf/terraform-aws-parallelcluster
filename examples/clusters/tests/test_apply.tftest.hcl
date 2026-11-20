@@ -27,7 +27,7 @@ run "test_clusters_apply" {
   command = apply
 
   variables {
-    api_version = "3.16.2"
+    api_version = "3.16.3"
 
     # The test assumes that a PCAPI exists with the below name.
     api_stack_name = "ParallelClusterAPI"
