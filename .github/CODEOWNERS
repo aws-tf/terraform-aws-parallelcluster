@@ -1,1 +1,11 @@
 *       @aws-tf/aws-parallelcluster
+
+# The rules below have owners intentionally left empty so that
+# Dependabot pull requests do not require a code-owner review and can be
+# auto-merged on CI success.
+/.github/workflows/changelog-enforcer.yml
+/.github/workflows/ci.yml
+/.github/workflows/end-to-end-tests.yml
+/.github/workflows/labeler.yml
+**/terraform.tf
+/examples/*/tests/setup/main.tf
