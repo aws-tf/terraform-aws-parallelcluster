@@ -15,7 +15,6 @@ permissions:
   pull-requests: read
 
 jobs:
-  # Enforces the update of a changelog file on every pull request
   changelog:
     runs-on: ubuntu-latest
     steps:
