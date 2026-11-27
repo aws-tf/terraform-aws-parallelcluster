@@ -24,4 +24,6 @@ provider "aws-parallelcluster" {
   profile  = var.profile
   endpoint = module.pcluster.pcluster_api_stack_outputs.ParallelClusterApiInvokeUrl
   role_arn = module.pcluster.pcluster_api_stack_outputs.ParallelClusterApiUserRole
+  // Lets the provider read endpoint and role from the stack when they are unknown, i.e. the stack has pending changes.
+  api_stack_name = module.pcluster.pcluster_api_stack_name
 }
