@@ -6,6 +6,10 @@
 - Use ParallelCluster API 3.16.2 in all examples and tests.
 - Use Amazon Linux 2023 rather than Amazon Linux 2 in all examples.
 
+**BUG FIXES**
+- In example `full`, fix `terraform plan` failing with `unsupported protocol scheme ""` when the ParallelCluster API stack has pending changes.
+  Requires AWS ParallelCluster Terraform Provider 1.3.0+.
+
 ## 1.2.0
 
 **CHANGES**
